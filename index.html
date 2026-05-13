@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mongol Rally 2027 | Nom de l'équipe</title>
+  <meta name="description" content="Site de présentation de notre projet Mongol Rally 2027 : équipe, aventure, dons et carnet de bord." />
+
+  <style>
+    :root {
+      --sand: #f8ecd9;
+      --sand-deep: #ead1aa;
+      --ink: #1f2933;
+      --muted: #667085;
+      --rust: #c75c2c;
+      --rust-dark: #963f20;
+      --sky: #8ecae6;
+      --green: #52796f;
+      --paper: #fffaf0;
+      --white: #ffffff;
+      --shadow: 0 20px 60px rgba(31, 41, 51, 0.16);
+      --radius: 28px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(142, 202, 230, 0.45), transparent 28rem),
+        radial-gradient(circle at bottom right, rgba(199, 92, 44, 0.20), transparent 30rem),
+        linear-gradient(135deg, var(--sand), #fff7e8 45%, #f4e0c0);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .site-shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(255, 250, 240, 0.78);
+      border-bottom: 1px solid rgba(31, 41, 51, 0.08);
+    }
+
+    .nav {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      font-size: 1.1rem;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: var(--ink);
+      color: var(--paper);
+      box-shadow: 0 10px 30px rgba(31, 41, 51, 0.22);
+      transform: rotate(-4deg);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-link {
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.92rem;
+      transition: 0.2s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--ink);
+      background: rgba(199, 92, 44, 0.12);
+    }
+
+    .mobile-menu-button {
+      display: none;
+      border: 0;
+      background: var(--ink);
+      color: var(--white);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .hero {
+      padding: 72px 0 44px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(82, 121, 111, 0.13);
+      color: var(--green);
+      font-weight: 900;
+      font-size: 0.84rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 8vw, 6.8rem);
+      line-height: 0.9;
+      letter-spacing: -0.08em;
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      max-width: 640px;
+      font-size: clamp(1.05rem, 2vw, 1.28rem);
+      color: #3d4a57;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 13px 20px;
+      border-radius: 999px;
+      border: 2px solid transparent;
+      font-weight: 900;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .button.primary {
+      background: var(--rust);
+      color: var(--white);
+      box-shadow: 0 16px 34px rgba(199, 92, 44, 0.32);
+    }
+
+    .button.primary:hover {
+      background: var(--rust-dark);
+      transform: translateY(-2px);
+    }
+
+    .button.secondary {
+      background: rgba(255, 255, 255, 0.58);
+      border-color: rgba(31, 41, 51, 0.12);
+    }
+
+    .button.secondary:hover {
+      background: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      position: relative;
+      padding: 26px;
+      border-radius: var(--radius);
+      background: rgba(255, 250, 240, 0.88);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(31, 41, 51, 0.08);
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg, rgba(199, 92, 44, 0.18), transparent 35%),
+        radial-gradient(circle at 80% 10%, rgba(142, 202, 230, 0.45), transparent 14rem);
+      pointer-events: none;
+    }
+
+    .map-card {
+      position: relative;
+      min-height: 410px;
+      border-radius: 24px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.62), rgba(255,255,255,0.18)),
+        repeating-linear-gradient(45deg, rgba(31,41,51,0.05), rgba(31,41,51,0.05) 1px, transparent 1px, transparent 22px);
+      border: 2px dashed rgba(31, 41, 51, 0.18);
+      overflow: hidden;
+    }
+
+    .route-line {
+      position: absolute;
+      left: 12%;
+      right: 12%;
+      top: 49%;
+      height: 7px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--rust), var(--green), var(--sky));
+      transform: rotate(-10deg);
+      box-shadow: 0 10px 26px rgba(31,41,51,0.18);
+    }
+
+    .pin {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      width: 76px;
+      height: 76px;
+      border-radius: 50% 50% 50% 10%;
+      background: var(--rust);
+      color: var(--white);
+      font-size: 1.8rem;
+      transform: rotate(-45deg);
+      box-shadow: 0 18px 30px rgba(31,41,51,0.2);
+    }
+
+    .pin span {
+      transform: rotate(45deg);
+    }
+
+    .pin.start { left: 11%; top: 50%; }
+    .pin.finish { right: 11%; top: 30%; background: var(--green); }
+
+    .map-label {
+      position: absolute;
+      padding: 10px 14px;
+      border-radius: 16px;
+      background: rgba(255, 250, 240, 0.9);
+      font-weight: 900;
+      box-shadow: 0 12px 28px rgba(31,41,51,0.10);
+    }
+
+    .map-label.one { left: 7%; bottom: 18%; }
+    .map-label.two { right: 7%; top: 16%; }
+
+    .mini-stats {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .stat {
+      padding: 16px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid rgba(31, 41, 51, 0.08);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.4rem;
+      letter-spacing: -0.05em;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    main {
+      padding-bottom: 72px;
+    }
+
+    .page {
+      display: none;
+      animation: fadeUp 0.35s ease both;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 28px;
+      margin: 56px 0 24px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 1;
+      letter-spacing: -0.06em;
+    }
+
+    .section-header p {
+      max-width: 560px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card {
+      position: relative;
+      padding: 24px;
+      border-radius: 24px;
+      background: rgba(255, 250, 240, 0.82);
+      border: 1px solid rgba(31, 41, 51, 0.08);
+      box-shadow: 0 16px 42px rgba(31, 41, 51, 0.10);
+      overflow: hidden;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border-radius: 999px;
+      right: -60px;
+      top: -80px;
+      background: rgba(199, 92, 44, 0.10);
+      pointer-events: none;
+    }
+
+    .card h3 {
+      font-size: 1.35rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .card p,
+    .card li {
+      color: #465463;
+      font-weight: 560;
+    }
+
+    .avatar {
+      width: 82px;
+      height: 82px;
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.8), transparent 30%),
+        linear-gradient(135deg, var(--rust), var(--green));
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      font-size: 2rem;
+      font-weight: 950;
+      margin-bottom: 18px;
+      box-shadow: 0 12px 24px rgba(31, 41, 51, 0.16);
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .tag {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(82, 121, 111, 0.13);
+      color: var(--green);
+      font-size: 0.82rem;
+      font-weight: 900;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 16px;
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(31,41,51,0.08);
+    }
+
+    .timeline-date {
+      color: var(--rust);
+      font-weight: 950;
+    }
+
+    .callout {
+      margin-top: 18px;
+      padding: 24px;
+      border-radius: 24px;
+      background: var(--ink);
+      color: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .callout p {
+      color: rgba(255, 250, 240, 0.82);
+      margin-top: 8px;
+    }
+
+    .donation-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 320px;
+    }
+
+    .donation-card .amount {
+      font-size: 2.4rem;
+      line-height: 1;
+      letter-spacing: -0.06em;
+      font-weight: 950;
+      margin: 12px 0;
+      color: var(--rust);
+    }
+
+    .donation-card .button {
+      margin-top: auto;
+      width: fit-content;
+    }
+
+    .progress-wrap {
+      margin: 18px 0 10px;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 850;
+      margin-bottom: 8px;
+    }
+
+    .progress {
+      height: 13px;
+      background: rgba(31,41,51,0.10);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress > span {
+      display: block;
+      height: 100%;
+      width: var(--value);
+      background: linear-gradient(90deg, var(--rust), var(--green));
+      border-radius: inherit;
+    }
+
+    .blog-toolbar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .search-input,
+    .select-input {
+      min-height: 48px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(31,41,51,0.12);
+      background: rgba(255,250,240,0.82);
+      font: inherit;
+      font-weight: 700;
+      color: var(--ink);
+      outline: none;
+    }
+
+    .search-input {
+      flex: 1 1 260px;
+    }
+
+    .blog-post {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .post-date-box {
+      border-radius: 22px;
+      background: rgba(31,41,51,0.94);
+      color: var(--paper);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 18px;
+      min-height: 140px;
+    }
+
+    .post-date-box strong {
+      display: block;
+      font-size: 2.2rem;
+      line-height: 1;
+    }
+
+    .post-content {
+      padding: 24px;
+      border-radius: 24px;
+      background: rgba(255, 250, 240, 0.82);
+      border: 1px solid rgba(31, 41, 51, 0.08);
+      box-shadow: 0 16px 42px rgba(31, 41, 51, 0.10);
+    }
+
+    .post-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .empty-state {
+      display: none;
+      padding: 32px;
+      text-align: center;
+      border-radius: 24px;
+      background: rgba(255, 250, 240, 0.75);
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .footer {
+      border-top: 1px solid rgba(31,41,51,0.08);
+      padding: 34px 0 52px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer a {
+      color: var(--ink);
+      font-weight: 950;
+    }
+
+    @media (max-width: 860px) {
+      .nav {
+        align-items: flex-start;
+        padding: 14px 0;
+      }
+
+      .mobile-menu-button {
+        display: inline-flex;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        left: 16px;
+        right: 16px;
+        top: 72px;
+        padding: 14px;
+        border-radius: 24px;
+        background: rgba(255,250,240,0.96);
+        box-shadow: var(--shadow);
+        justify-content: flex-start;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 44px;
+      }
+
+      .grid.three,
+      .grid.two {
+        grid-template-columns: 1fr;
+      }
+
+      .section-header {
+        display: block;
+      }
+
+      .section-header p {
+        margin-top: 12px;
+      }
+
+      .mini-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item,
+      .blog-post {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .site-shell {
+        width: min(100% - 22px, 1180px);
+      }
+
+      .hero-actions .button,
+      .donation-card .button {
+        width: 100%;
+      }
+
+      .map-card {
+        min-height: 330px;
+      }
+
+      .pin {
+        width: 62px;
+        height: 62px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="site-shell nav" aria-label="Navigation principale">
+      <a class="brand" href="#home" aria-label="Accueil">
+        <span class="brand-mark">🚗</span>
+        <span>Nom de l'équipe<br><small>Mongol Rally 2027</small></span>
+      </a>
+
+      <button class="mobile-menu-button" type="button" aria-label="Ouvrir le menu" id="menuButton">Menu</button>
+
+      <div class="nav-links" id="navLinks">
+        <a class="nav-link" href="#team" data-page-link="team">Qui nous sommes</a>
+        <a class="nav-link" href="#rally" data-page-link="rally">Le Mongol Rally</a>
+        <a class="nav-link" href="#donner" data-page-link="donner">Donner</a>
+        <a class="nav-link" href="#blog" data-page-link="blog">Blog</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="site-shell hero" id="home">
+    <div>
+      <span class="eyebrow">Projet étudiant • grande route • petite voiture</span>
+      <h1>Une vieille caisse. Trois potes. Beaucoup trop de kilomètres.</h1>
+      <p>
+        En 2027, notre équipe se lance dans le Mongol Rally : une aventure mécanique,
+        humaine et légèrement déraisonnable à travers l'Europe et l'Asie centrale.
+        L'objectif : partir avec une voiture minuscule, raconter le voyage, soutenir une cause,
+        et revenir avec des histoires que même Google Maps n'aurait pas osé proposer.
+      </p>
+      <div class="hero-actions">
+        <a class="button primary" href="#donner">Soutenir le projet</a>
+        <a class="button secondary" href="#blog">Voir les avancées</a>
+      </div>
+    </div>
+
+    <aside class="hero-card" aria-label="Carte stylisée du projet">
+      <div class="map-card">
+        <div class="route-line" aria-hidden="true"></div>
+        <div class="pin start"><span>🇪🇺</span></div>
+        <div class="pin finish"><span>🏁</span></div>
+        <div class="map-label one">Départ : Europe</div>
+        <div class="map-label two">Objectif : Asie centrale</div>
+      </div>
+      <div class="mini-stats">
+        <div class="stat"><strong>3</strong><span>membres</span></div>
+        <div class="stat"><strong>1</strong><span>shitbox héroïque</span></div>
+        <div class="stat"><strong>∞</strong><span>galères probables</span></div>
+      </div>
+    </aside>
+  </section>
+
+  <main class="site-shell">
+    <section class="page" id="page-team" data-page="team">
+      <div class="section-header">
+        <h2>Qui nous sommes</h2>
+        <p>
+          Une équipe de trois étudiants avec une envie simple : transformer une idée absurde
+          en projet concret, documenté, sponsorisable et surtout mémorable.
+        </p>
+      </div>
+
+      <div class="grid three">
+        <article class="card">
+          <div class="avatar">A</div>
+          <h3>Axel</h3>
+          <p>
+            Coordination du projet, suivi budget, communication et bricolages douteux mais assumés.
+            À personnaliser avec une vraie bio courte et une photo.
+          </p>
+          <div class="tag-list">
+            <span class="tag">Organisation</span>
+            <span class="tag">Mécanique</span>
+            <span class="tag">Communication</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="avatar">?</div>
+          <h3>Membre 2</h3>
+          <p>
+            Présentation à compléter : rôle dans l'équipe, compétences utiles, raison de participer,
+            et petite touche drôle pour rendre la page plus humaine.
+          </p>
+          <div class="tag-list">
+            <span class="tag">Navigation</span>
+            <span class="tag">Logistique</span>
+            <span class="tag">Survie</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="avatar">?</div>
+          <h3>Membre 3</h3>
+          <p>
+            Présentation à compléter : celui ou celle qui sait garder son calme quand la voiture
+            décide de devenir un barbecue roulant au milieu de nulle part.
+          </p>
+          <div class="tag-list">
+            <span class="tag">Sponsors</span>
+            <span class="tag">Vidéo</span>
+            <span class="tag">Réparations</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="callout">
+        <h3>Notre promesse</h3>
+        <p>
+          Faire un projet transparent : budget clair, choix techniques expliqués,
+          suivi régulier, et une vraie place donnée aux personnes qui nous soutiennent.
+        </p>
+      </div>
+    </section>
+
+    <section class="page" id="page-rally" data-page="rally">
+      <div class="section-header">
+        <h2>Le Mongol Rally</h2>
+        <p>
+          Le Mongol Rally n'est pas une course classique. C'est plutôt l'anti-rallye :
+          peu d'assistance, beaucoup d'imprévu, et un véhicule qui n'a objectivement rien demandé.
+        </p>
+      </div>
+
+      <div class="grid two">
+        <article class="card">
+          <h3>Le principe</h3>
+          <p>
+            Partir depuis l'Europe et rejoindre l'Asie centrale avec une voiture petite,
+            simple, peu puissante et franchement pas taillée pour l'aventure. Le trajet exact
+            est à construire par chaque équipe : c'est là que commencent les bonnes idées,
+            les mauvaises décisions et les anecdotes.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Pourquoi on le fait</h3>
+          <p>
+            Pour vivre une aventure hors cadre, apprendre à préparer un projet de A à Z,
+            lever des fonds, rencontrer des gens, et prouver qu'une petite voiture peut avoir
+            un très grand sens de l'humour.
+          </p>
+        </article>
+      </div>
+
+      <div class="section-header">
+        <h2>Plan de préparation</h2>
+        <p>Une feuille de route simple pour transformer le délire en vrai projet.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">Maintenant</div>
+          <div>
+            <h3>Construire l'identité</h3>
+            <p>Nom d'équipe, logo, ton, page web, dossier sponsor et premiers réseaux sociaux.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2026</div>
+          <div>
+            <h3>Trouver la voiture</h3>
+            <p>Comparer les modèles, acheter une petite voiture simple, faire les réparations prioritaires.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2026–2027</div>
+          <div>
+            <h3>Préparer la route</h3>
+            <p>Documents, visas, assurances, équipement, autonomie électrique, communication et sécurité.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Été 2027</div>
+          <div>
+            <h3>Prendre la route</h3>
+            <p>Publier le carnet de bord, remercier les soutiens et essayer de garder les roues attachées.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-donner" data-page="donner">
+      <div class="section-header">
+        <h2>Donner</h2>
+        <p>
+          Deux manières de soutenir l'aventure : aider l'association caritative liée au rallye,
+          ou nous aider directement à couvrir les frais concrets du projet.
+        </p>
+      </div>
+
+      <div class="grid two">
+        <article class="card donation-card">
+          <h3>Don à l'association</h3>
+          <p>
+            Les dons caritatifs sont destinés à la cause officielle ou à une association choisie.
+            Ce bouton pointera vers votre page de fundraising officielle.
+          </p>
+          <div class="amount">£500+</div>
+          <div class="progress-wrap">
+            <div class="progress-label"><span>Objectif caritatif</span><span>0%</span></div>
+            <div class="progress"><span style="--value: 0%"></span></div>
+          </div>
+          <a class="button primary" href="https://example.com" target="_blank" rel="noopener">Remplacer par le lien officiel</a>
+        </article>
+
+        <article class="card donation-card">
+          <h3>Soutenir l'équipe</h3>
+          <p>
+            Cette aide sert à amortir les dépenses : voiture, pièces, outils, assurance,
+            équipement, essence, documents et imprévus mécaniques. Probablement beaucoup d'imprévus.
+          </p>
+          <div class="amount">€ à définir</div>
+          <div class="progress-wrap">
+            <div class="progress-label"><span>Budget projet</span><span>0%</span></div>
+            <div class="progress"><span style="--value: 0%"></span></div>
+          </div>
+          <a class="button secondary" href="https://example.com" target="_blank" rel="noopener">Remplacer par votre cagnotte</a>
+        </article>
+      </div>
+
+      <div class="callout">
+        <h3>À ajouter pour rassurer les donateurs</h3>
+        <p>
+          Un mini budget public, les factures importantes, une liste des sponsors,
+          et un message clair expliquant que les dons caritatifs et les dons projet sont séparés.
+        </p>
+      </div>
+    </section>
+
+    <section class="page" id="page-blog" data-page="blog">
+      <div class="section-header">
+        <h2>Carnet de bord</h2>
+        <p>
+          Ici, vous pourrez publier les avancées : choix de la voiture, réparations,
+          sponsors, préparation du matériel, galères administratives et tests sur route.
+        </p>
+      </div>
+
+      <div class="blog-toolbar">
+        <input class="search-input" id="blogSearch" type="search" placeholder="Rechercher un article..." aria-label="Rechercher un article" />
+        <select class="select-input" id="blogFilter" aria-label="Filtrer par catégorie">
+          <option value="all">Toutes les catégories</option>
+          <option value="Préparation">Préparation</option>
+          <option value="Voiture">Voiture</option>
+          <option value="Sponsors">Sponsors</option>
+          <option value="Route">Route</option>
+        </select>
+      </div>
+
+      <div class="grid" id="blogList"></div>
+      <div class="empty-state" id="emptyState">Aucun article trouvé. Même la voiture n'a pas calé aussi fort.</div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="site-shell footer-inner">
+      <p>© <span id="year"></span> Nom de l'équipe — Mongol Rally 2027.</p>
+      <p>Site statique prêt pour <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+    const pages = document.querySelectorAll(".page");
+    const links = document.querySelectorAll("[data-page-link]");
+    const navLinks = document.getElementById("navLinks");
+    const menuButton = document.getElementById("menuButton");
+
+    const blogPosts = [
+      {
+        title: "Le site est lancé",
+        date: "2026-05-13",
+        category: "Préparation",
+        excerpt: "Première version du site : structure, pages principales, espace dons et blog. Prochaine étape : choisir le nom officiel de l'équipe et ajouter les photos."
+      },
+      {
+        title: "Recherche de la voiture parfaite — donc imparfaite",
+        date: "2026-06-01",
+        category: "Voiture",
+        excerpt: "On compare les petites voitures simples à réparer : Twingo, Panda, Saxo, 106, Micra... Le cahier des charges : pas cher, léger, fiable, et assez drôle pour traverser un continent."
+      },
+      {
+        title: "Première liste d'équipement",
+        date: "2026-06-15",
+        category: "Route",
+        excerpt: "Power station, outils, musique, pièces de rechange, couchage, navigation hors ligne : on prépare une liste réaliste pour éviter de transformer le coffre en brocante roulante."
+      }
+    ];
+
+    function getCurrentPage() {
+      const hash = window.location.hash.replace("#", "");
+      return ["team", "rally", "donner", "blog"].includes(hash) ? hash : "team";
+    }
+
+    function renderPage() {
+      const current = getCurrentPage();
+      pages.forEach(page => page.classList.toggle("active", page.dataset.page === current));
+      links.forEach(link => link.classList.toggle("active", link.dataset.pageLink === current));
+      navLinks.classList.remove("open");
+    }
+
+    function formatPostDate(dateString) {
+      const date = new Date(dateString + "T12:00:00");
+      return {
+        day: date.toLocaleDateString("fr-FR", { day: "2-digit" }),
+        month: date.toLocaleDateString("fr-FR", { month: "short" }),
+        year: date.toLocaleDateString("fr-FR", { year: "numeric" })
+      };
+    }
+
+    function renderBlog() {
+      const list = document.getElementById("blogList");
+      const emptyState = document.getElementById("emptyState");
+      const search = document.getElementById("blogSearch").value.toLowerCase().trim();
+      const filter = document.getElementById("blogFilter").value;
+
+      const filtered = blogPosts.filter(post => {
+        const matchesSearch = [post.title, post.category, post.excerpt].join(" ").toLowerCase().includes(search);
+        const matchesFilter = filter === "all" || post.category === filter;
+        return matchesSearch && matchesFilter;
+      });
+
+      list.innerHTML = filtered.map(post => {
+        const formatted = formatPostDate(post.date);
+        return `
+          <article class="blog-post">
+            <div class="post-date-box">
+              <div>
+                <strong>${formatted.day}</strong>
+                <span>${formatted.month} ${formatted.year}</span>
+              </div>
+            </div>
+            <div class="post-content">
+              <h3>${post.title}</h3>
+              <div class="post-meta"><span class="tag">${post.category}</span></div>
+              <p>${post.excerpt}</p>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      emptyState.style.display = filtered.length ? "none" : "block";
+    }
+
+    menuButton.addEventListener("click", () => navLinks.classList.toggle("open"));
+    window.addEventListener("hashchange", renderPage);
+    document.getElementById("blogSearch").addEventListener("input", renderBlog);
+    document.getElementById("blogFilter").addEventListener("change", renderBlog);
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    renderPage();
+    renderBlog();
+  </script>
+</body>
+</html>
