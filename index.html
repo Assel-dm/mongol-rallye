@@ -428,6 +428,186 @@
       font-weight: 900;
     }
 
+    .feature-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.56);
+      border: 1px solid rgba(31, 41, 51, 0.08);
+    }
+
+    .feature-item strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .icon-bubble {
+      flex: 0 0 38px;
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(199, 92, 44, 0.13);
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .spec {
+      padding: 15px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.56);
+      border: 1px solid rgba(31, 41, 51, 0.08);
+    }
+
+    .spec span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 850;
+    }
+
+    .spec strong {
+      display: block;
+      font-size: 1.15rem;
+      letter-spacing: -0.03em;
+    }
+
+    .budget-table-wrap {
+      overflow-x: auto;
+      margin-top: 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(31, 41, 51, 0.08);
+      background: rgba(255, 255, 255, 0.45);
+    }
+
+    .budget-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 680px;
+    }
+
+    .budget-table th,
+    .budget-table td {
+      text-align: left;
+      padding: 15px 16px;
+      border-bottom: 1px solid rgba(31, 41, 51, 0.08);
+      vertical-align: top;
+    }
+
+    .budget-table th {
+      color: var(--muted);
+      font-size: 0.84rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: rgba(255, 250, 240, 0.78);
+    }
+
+    .budget-table td:last-child,
+    .budget-table th:last-child {
+      text-align: right;
+      font-weight: 950;
+      white-space: nowrap;
+    }
+
+    .budget-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .budget-total {
+      font-size: 1.3rem;
+      color: var(--rust);
+    }
+
+    .route-planner {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .route-map-visual {
+      position: relative;
+      min-height: 440px;
+      border-radius: 28px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(142, 202, 230, 0.42), transparent 11rem),
+        radial-gradient(circle at 80% 80%, rgba(199, 92, 44, 0.20), transparent 13rem),
+        repeating-linear-gradient(45deg, rgba(31,41,51,0.055), rgba(31,41,51,0.055) 1px, transparent 1px, transparent 24px),
+        rgba(255, 250, 240, 0.82);
+      border: 1px solid rgba(31, 41, 51, 0.08);
+      box-shadow: 0 16px 42px rgba(31, 41, 51, 0.10);
+    }
+
+    .route-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .route-svg polyline {
+      fill: none;
+      stroke: var(--rust);
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 14 14;
+      opacity: 0.82;
+    }
+
+    .route-point {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border: 0;
+      border-radius: 18px 18px 18px 5px;
+      background: var(--paper);
+      color: var(--ink);
+      font-weight: 950;
+      box-shadow: 0 12px 28px rgba(31, 41, 51, 0.22);
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .route-point:hover,
+    .route-point.active {
+      background: var(--rust);
+      color: var(--white);
+      transform: translate(-50%, -50%) translateY(-4px) rotate(-3deg);
+    }
+
+    .route-detail h3 {
+      font-size: 1.7rem;
+    }
+
+    .route-detail ul {
+      margin-top: 14px;
+      padding-left: 20px;
+    }
+
+    .route-detail li + li {
+      margin-top: 8px;
+    }
+
     .timeline {
       display: grid;
       gap: 14px;
@@ -692,7 +872,9 @@
 
       <div class="nav-links" id="navLinks">
         <a class="nav-link" href="#team" data-page-link="team">Qui nous sommes</a>
+        <a class="nav-link" href="#car" data-page-link="car">La voiture</a>
         <a class="nav-link" href="#rally" data-page-link="rally">Le Mongol Rally</a>
+        <a class="nav-link" href="#route" data-page-link="route">La route</a>
         <a class="nav-link" href="#donner" data-page-link="donner">Donner</a>
         <a class="nav-link" href="#blog" data-page-link="blog">Blog</a>
       </div>
@@ -751,17 +933,16 @@
           </p>
           <div class="tag-list">
             <span class="tag">Organisation</span>
-            <span class="tag">Mécanique</span>
             <span class="tag">Communication</span>
+            <span class="tag">Semi Quebecois</span>
           </div>
         </article>
 
         <article class="card">
           <div class="avatar">?</div>
-          <h3>Membre 2</h3>
+          <h3>Noah</h3>
           <p>
-            Présentation à compléter : rôle dans l'équipe, compétences utiles, raison de participer,
-            et petite touche drôle pour rendre la page plus humaine.
+            Présentation à compléter : veut mettre des turbo partout, il a pas compris qu'on avait pas de budget
           </p>
           <div class="tag-list">
             <span class="tag">Navigation</span>
@@ -772,7 +953,7 @@
 
         <article class="card">
           <div class="avatar">?</div>
-          <h3>Membre 3</h3>
+          <h3>Yoann</h3>
           <p>
             Présentation à compléter : celui ou celle qui sait garder son calme quand la voiture
             décide de devenir un barbecue roulant au milieu de nulle part.
@@ -794,7 +975,73 @@
       </div>
     </section>
 
-    <section class="page" id="page-rally" data-page="rally">
+    <section class="page" id="page-car" data-page="car">
+      <div class="section-header">
+        <h2>La voiture</h2>
+        <p>
+          Pour l'instant, la voiture n'est pas encore choisie. Cette page servira à suivre
+          la recherche, l'achat, les réparations, les tests et les petites décisions mécaniques
+          qui peuvent sauver un voyage... ou au moins retarder la panne de trois kilomètres.
+        </p>
+      </div>
+
+      <div class="grid two">
+        <article class="card">
+          <h3>Le cahier des charges</h3>
+          <p>
+            On cherche une voiture simple, légère, peu chère, facile à réparer, avec des pièces
+            disponibles et assez de personnalité pour mériter son propre surnom.
+          </p>
+          <div class="feature-list">
+            <div class="feature-item">
+              <span class="icon-bubble">🔧</span>
+              <div><strong>Réparable simplement</strong><p>Mécanique accessible, peu d'électronique, pièces courantes.</p></div>
+            </div>
+            <div class="feature-item">
+              <span class="icon-bubble">⛽</span>
+              <div><strong>Consommation raisonnable</strong><p>Petite cylindrée, poids contenu, budget carburant moins violent.</p></div>
+            </div>
+            <div class="feature-item">
+              <span class="icon-bubble">🧳</span>
+              <div><strong>Volume exploitable</strong><p>Assez de place pour l'outillage, le couchage léger, les pièces et la nourriture.</p></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Fiche provisoire</h3>
+          <p>À mettre à jour dès que la voiture sera achetée.</p>
+          <div class="spec-grid">
+            <div class="spec"><span>Modèle visé</span><strong>Twingo / Panda / Saxo / 106</strong></div>
+            <div class="spec"><span>Budget achat</span><strong>≈ 800–1 500 €</strong></div>
+            <div class="spec"><span>État recherché</span><strong>Simple mais saine</strong></div>
+            <div class="spec"><span>Priorité</span><strong>Fiabilité & pièces</strong></div>
+          </div>
+          <div class="tag-list">
+            <span class="tag">À acheter</span>
+            <span class="tag">À nommer</span>
+            <span class="tag">À fiabiliser</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="section-header">
+        <h2>Checklist préparation</h2>
+        <p>Une base simple à enrichir au fur et à mesure des essais.</p>
+      </div>
+
+      <div class="grid three">
+        <article class="card">
+          <h3>Priorité 1 — fiabilité</h3>
+          <p>Vidanges, courroie si nécessaire, freins, pneus, batterie, refroidissement, durites, roulements.</p>
+        </article>
+        <article class="card">
+          <h3>Priorité 2 — autonomie</h3>
+          <p>Outils, roue de secours, jerrican, compresseur, kit crevaison, pièces critiques et éclairage.</p>
+        </article>
+        <article class="card">
+          <h3>Priorité 3 — confort</h3>
+          <p>Musique, charge téléphone, rangement, ventilation, couchage léger et organisation du coffre.</p
       <div class="section-header">
         <h2>Le Mongol Rally</h2>
         <p>
@@ -882,7 +1129,7 @@
             <div class="progress-label"><span>Objectif caritatif</span><span>0%</span></div>
             <div class="progress"><span style="--value: 0%"></span></div>
           </div>
-          <a class="button primary" href="https://example.com" target="_blank" rel="noopener">Remplacer par le lien officiel</a>
+          <a class="button primary" href="https://www.youtube.com/watch?v=2qBlE2-WL60" target="_blank" rel="noopener">Remplacer par le lien officiel</a>
         </article>
 
         <article class="card donation-card">
@@ -896,7 +1143,7 @@
             <div class="progress-label"><span>Budget projet</span><span>0%</span></div>
             <div class="progress"><span style="--value: 0%"></span></div>
           </div>
-          <a class="button secondary" href="https://example.com" target="_blank" rel="noopener">Remplacer par votre cagnotte</a>
+          <a class="button secondary" href="https://www.youtube.com/watch?v=2qBlE2-WL60" target="_blank" rel="noopener">Remplacer par votre cagnotte</a>
         </article>
       </div>
 
@@ -913,7 +1160,7 @@
       <div class="section-header">
         <h2>Carnet de bord</h2>
         <p>
-          Ici, vous pourrez publier les avancées : choix de la voiture, réparations,
+          Ici, nous pourrons publier les avancées : choix de la voiture, réparations,
           sponsors, préparation du matériel, galères administratives et tests sur route.
         </p>
       </div>
