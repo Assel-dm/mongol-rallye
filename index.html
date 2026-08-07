@@ -15,6 +15,8 @@
       --muted: #667085;
       --rust: #c75c2c;
       --rust-dark: #963f20;
+      --red: #b51d36;
+      --red-dark: #611122;
       --sky: #8ecae6;
       --green: #52796f;
       --white: #ffffff;
@@ -53,6 +55,12 @@
       display: block;
     }
 
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
     .site-shell {
       width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
@@ -63,7 +71,7 @@
       top: 0;
       z-index: 50;
       backdrop-filter: blur(18px);
-      background: rgba(255, 250, 240, 0.82);
+      background: rgba(255, 250, 240, 0.86);
       border-bottom: 1px solid rgba(31, 41, 51, 0.08);
     }
 
@@ -79,7 +87,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      font-weight: 900;
+      font-weight: 950;
       letter-spacing: -0.04em;
       font-size: 1.1rem;
     }
@@ -113,7 +121,7 @@
       padding: 10px 14px;
       border-radius: 999px;
       color: var(--muted);
-      font-weight: 800;
+      font-weight: 850;
       font-size: 0.92rem;
       transition: 0.2s ease;
     }
@@ -131,16 +139,26 @@
       color: var(--white);
       border-radius: 999px;
       padding: 10px 14px;
-      font-weight: 900;
+      font-weight: 950;
       cursor: pointer;
     }
 
-    .hero {
-      padding: 72px 0 44px;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 36px;
-      align-items: center;
+    main {
+      padding: 46px 0 72px;
+    }
+
+    .page {
+      display: none;
+      animation: fadeUp 0.35s ease both;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .eyebrow {
@@ -159,15 +177,23 @@
     }
 
     h1 {
-      font-size: clamp(3rem, 8vw, 6.8rem);
+      font-size: clamp(3.4rem, 8vw, 7.3rem);
       line-height: 0.9;
-      letter-spacing: -0.08em;
+      letter-spacing: -0.085em;
       margin-bottom: 24px;
     }
 
-    .hero p {
-      max-width: 640px;
-      font-size: clamp(1.05rem, 2vw, 1.28rem);
+    .home-hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 44px;
+      align-items: center;
+      min-height: calc(100vh - 160px);
+    }
+
+    .home-hero p {
+      max-width: 670px;
+      font-size: clamp(1.05rem, 2vw, 1.26rem);
       color: #3d4a57;
       margin-bottom: 28px;
     }
@@ -213,81 +239,183 @@
       transform: translateY(-2px);
     }
 
-    .hero-card,
+    .button.dark {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .button.dark:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(31, 41, 51, 0.22);
+    }
+
     .card,
+    .route-map-card,
     .post-content,
-    .route-map-visual {
+    .home-map-card {
       background: rgba(255, 250, 240, 0.84);
       border: 1px solid rgba(31, 41, 51, 0.08);
       box-shadow: 0 16px 42px rgba(31, 41, 51, 0.10);
     }
 
-    .hero-card {
+    .home-map-card {
       position: relative;
-      padding: 26px;
+      padding: 24px;
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow: hidden;
     }
 
-    .map-card {
+    .home-map-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(142, 202, 230, 0.24), transparent 20rem),
+        radial-gradient(circle at 80% 70%, rgba(199, 92, 44, 0.17), transparent 22rem);
+      pointer-events: none;
+    }
+
+    .map-title-row {
       position: relative;
-      min-height: 410px;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .map-title-row h2 {
+      font-size: 1.45rem;
+      letter-spacing: -0.04em;
+    }
+
+    .map-title-row p {
+      max-width: 330px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.94rem;
+    }
+
+    .route-map {
+      position: relative;
+      z-index: 1;
+      min-height: 390px;
       border-radius: 24px;
       background:
-        linear-gradient(135deg, rgba(255,255,255,0.62), rgba(255,255,255,0.18)),
+        linear-gradient(135deg, rgba(255,255,255,0.66), rgba(255,255,255,0.2)),
+        radial-gradient(circle at 21% 40%, rgba(82, 121, 111, 0.12), transparent 9rem),
+        radial-gradient(circle at 82% 60%, rgba(199, 92, 44, 0.12), transparent 10rem),
         repeating-linear-gradient(45deg, rgba(31,41,51,0.05), rgba(31,41,51,0.05) 1px, transparent 1px, transparent 22px);
       border: 2px dashed rgba(31, 41, 51, 0.18);
       overflow: hidden;
     }
 
-    .route-line {
+    .route-svg {
       position: absolute;
-      left: 12%;
-      right: 12%;
-      top: 49%;
-      height: 7px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--rust), var(--green), var(--sky));
-      transform: rotate(-10deg);
-      box-shadow: 0 10px 26px rgba(31,41,51,0.18);
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
     }
 
-    .pin {
+    .route-svg .route-shadow {
+      fill: none;
+      stroke: rgba(31, 41, 51, 0.18);
+      stroke-width: 11;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .route-svg .route-main {
+      fill: none;
+      stroke: url(#routeGradient);
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .map-region {
       position: absolute;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 250, 240, 0.75);
+      color: rgba(31, 41, 51, 0.62);
+      font-weight: 950;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .region-europe { left: 8%; top: 18%; }
+    .region-caucasus { left: 41%; top: 53%; }
+    .region-asia { right: 9%; top: 19%; }
+
+    .map-stop {
+      position: absolute;
+      transform: translate(-50%, -50%);
       display: grid;
       place-items: center;
-      width: 76px;
-      height: 76px;
-      border-radius: 50% 50% 50% 10%;
-      background: var(--rust);
-      color: var(--white);
-      font-size: 1.8rem;
-      transform: rotate(-45deg);
-      box-shadow: 0 18px 30px rgba(31,41,51,0.2);
+      min-width: 48px;
+      height: 48px;
+      padding: 0 12px;
+      border-radius: 18px;
+      background: var(--paper);
+      box-shadow: 0 12px 28px rgba(31,41,51,0.18);
+      font-weight: 950;
+      border: 1px solid rgba(31,41,51,0.08);
     }
 
-    .pin span {
+    .map-stop.start,
+    .map-stop.finish {
+      min-width: 62px;
+      height: 62px;
+      border-radius: 50% 50% 50% 10%;
+      color: var(--white);
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    .map-stop.start span,
+    .map-stop.finish span {
       transform: rotate(45deg);
     }
 
-    .pin.start { left: 11%; top: 50%; }
-    .pin.finish { right: 11%; top: 30%; background: var(--green); }
+    .map-stop.start { background: var(--rust); left: 14%; top: 61%; }
+    .map-stop.finish { background: var(--green); left: 85%; top: 48%; }
+
+    .map-stop.small {
+      width: 22px;
+      min-width: 22px;
+      height: 22px;
+      padding: 0;
+      border-radius: 50%;
+      background: var(--ink);
+      color: transparent;
+    }
+
+    .stop-istanbul { left: 32%; top: 66%; }
+    .stop-caucasus { left: 48%; top: 55%; }
+    .stop-caspian { left: 60%; top: 49%; }
+    .stop-steppe { left: 72%; top: 50%; }
 
     .map-label {
       position: absolute;
       padding: 10px 14px;
       border-radius: 16px;
-      background: rgba(255, 250, 240, 0.9);
+      background: rgba(255, 250, 240, 0.92);
       font-weight: 950;
       box-shadow: 0 12px 28px rgba(31,41,51,0.10);
+      white-space: nowrap;
     }
 
-    .map-label.one { left: 7%; bottom: 18%; }
-    .map-label.two { right: 7%; top: 16%; }
+    .label-prague { left: 6%; bottom: 17%; }
+    .label-oskemen { right: 4%; top: 33%; }
+    .label-note { left: 31%; top: 18%; color: var(--muted); }
 
     .mini-stats {
       position: relative;
+      z-index: 1;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
@@ -313,26 +441,61 @@
       font-weight: 800;
     }
 
-    main {
-      padding-bottom: 72px;
+    .home-shortcuts {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
     }
 
-    #content-start {
-      scroll-margin-top: 92px;
+    .shortcut-card {
+      position: relative;
+      min-height: 145px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+      border-radius: 24px;
+      background: rgba(255, 250, 240, 0.72);
+      border: 1px solid rgba(31,41,51,0.08);
+      box-shadow: 0 12px 30px rgba(31,41,51,0.08);
+      overflow: hidden;
+      transition: 0.22s ease;
+      cursor: pointer;
     }
 
-    .page {
-      display: none;
-      animation: fadeUp 0.35s ease both;
+    .shortcut-card:hover {
+      transform: translateY(-4px);
+      background: rgba(255, 250, 240, 0.95);
+      box-shadow: 0 18px 42px rgba(31,41,51,0.13);
     }
 
-    .page.active {
-      display: block;
+    .shortcut-card::after {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 999px;
+      right: -56px;
+      bottom: -54px;
+      background: rgba(199, 92, 44, 0.12);
     }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(14px); }
-      to { opacity: 1; transform: translateY(0); }
+    .shortcut-icon {
+      font-size: 1.8rem;
+    }
+
+    .shortcut-card h3 {
+      font-size: 1.08rem;
+      letter-spacing: -0.03em;
+      margin-top: 12px;
+    }
+
+    .shortcut-card p {
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 0.9rem;
+      margin-top: 4px;
     }
 
     .section-header {
@@ -340,7 +503,11 @@
       justify-content: space-between;
       align-items: flex-end;
       gap: 28px;
-      margin: 56px 0 24px;
+      margin: 12px 0 24px;
+    }
+
+    .section-header + .section-header {
+      margin-top: 56px;
     }
 
     .section-header h2 {
@@ -399,20 +566,248 @@
       font-weight: 560;
     }
 
-    .avatar {
-      width: 82px;
-      height: 82px;
-      border-radius: 26px;
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .challenger-card {
+      position: relative;
+      min-height: 510px;
+      border: 0;
+      text-align: left;
+      border-radius: 28px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      color: var(--paper);
+      background: var(--ink);
+      isolation: isolate;
+    }
+
+    .challenger-card:focus-visible {
+      outline: 4px solid var(--sky);
+      outline-offset: 4px;
+    }
+
+    .challenger-stage,
+    .challenger-reveal {
+      position: absolute;
+      inset: 0;
+      padding: 24px;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .challenger-stage {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       background:
-        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.8), transparent 30%),
+        radial-gradient(circle at 68% 42%, rgba(255,255,255,0.38), transparent 8rem),
+        radial-gradient(circle at 78% 50%, rgba(255,255,255,0.20), transparent 15rem),
+        linear-gradient(145deg, var(--red), var(--red-dark));
+    }
+
+    .challenger-stage::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.08) 1px, transparent 1px, transparent 18px),
+        linear-gradient(8deg, transparent 0 44%, rgba(0,0,0,0.30) 45% 55%, transparent 56% 100%);
+      pointer-events: none;
+    }
+
+    .challenger-alert {
+      position: relative;
+      z-index: 2;
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      line-height: 0.92;
+      letter-spacing: -0.08em;
+      max-width: 260px;
+      text-transform: uppercase;
+      transform: rotate(-2deg);
+      text-shadow: 0 5px 0 rgba(31,41,51,0.22);
+    }
+
+    .challenger-name-hidden {
+      position: relative;
+      z-index: 4;
+      width: fit-content;
+      padding: 9px 13px;
+      border-radius: 999px;
+      color: var(--ink);
+      background: var(--paper);
+      font-weight: 950;
+      box-shadow: 0 10px 24px rgba(31,41,51,0.18);
+    }
+
+    .silhouette {
+      position: absolute;
+      left: 50%;
+      bottom: 42px;
+      width: 230px;
+      height: 340px;
+      transform: translateX(-50%);
+      filter: drop-shadow(0 20px 24px rgba(0,0,0,0.33));
+      z-index: 3;
+    }
+
+    .silhouette::before {
+      content: "";
+      position: absolute;
+      left: 76px;
+      top: 20px;
+      width: 88px;
+      height: 96px;
+      border-radius: 52% 48% 45% 55%;
+      background: #111827;
+    }
+
+    .silhouette::after {
+      content: "";
+      position: absolute;
+      left: 33px;
+      top: 108px;
+      width: 160px;
+      height: 205px;
+      border-radius: 55% 45% 22% 25%;
+      background: #111827;
+      clip-path: polygon(50% 0, 82% 13%, 100% 56%, 84% 100%, 14% 100%, 0 57%, 17% 14%);
+    }
+
+    .silhouette .arm-left,
+    .silhouette .arm-right {
+      position: absolute;
+      top: 148px;
+      width: 150px;
+      height: 34px;
+      border-radius: 999px;
+      background: #111827;
+    }
+
+    .silhouette .arm-left {
+      left: -26px;
+      transform: rotate(-26deg);
+    }
+
+    .silhouette .arm-right {
+      right: -30px;
+      transform: rotate(24deg);
+    }
+
+    .silhouette .leg-left,
+    .silhouette .leg-right {
+      position: absolute;
+      bottom: 0;
+      width: 50px;
+      height: 132px;
+      border-radius: 999px;
+      background: #111827;
+    }
+
+    .silhouette .leg-left {
+      left: 72px;
+      transform: rotate(7deg);
+    }
+
+    .silhouette .leg-right {
+      right: 70px;
+      transform: rotate(-7deg);
+    }
+
+    .challenger-card:nth-child(2) .silhouette {
+      transform: translateX(-50%) scale(0.95) rotate(-3deg);
+    }
+
+    .challenger-card:nth-child(3) .silhouette {
+      transform: translateX(-50%) scale(1.03) rotate(3deg);
+    }
+
+    .challenger-reveal {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(16px);
+      display: flex;
+      flex-direction: column;
+      background:
+        radial-gradient(circle at 80% 12%, rgba(142, 202, 230, 0.35), transparent 11rem),
+        linear-gradient(135deg, #fffaf0, #f6dfbd);
+      color: var(--ink);
+    }
+
+    .challenger-card.revealed .challenger-stage {
+      opacity: 0;
+      transform: scale(1.03);
+      pointer-events: none;
+    }
+
+    .challenger-card.revealed .challenger-reveal {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .member-photo-frame {
+      position: relative;
+      height: 250px;
+      border-radius: 24px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 35% 25%, rgba(255,255,255,0.76), transparent 7rem),
         linear-gradient(135deg, var(--rust), var(--green));
+      margin-bottom: 18px;
+      box-shadow: 0 16px 34px rgba(31, 41, 51, 0.14);
+    }
+
+    .member-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-fallback {
+      position: absolute;
+      inset: 0;
       display: grid;
       place-items: center;
       color: var(--white);
-      font-size: 2rem;
+      font-size: 5rem;
       font-weight: 950;
-      margin-bottom: 18px;
-      box-shadow: 0 12px 24px rgba(31, 41, 51, 0.16);
+      letter-spacing: -0.09em;
+    }
+
+    .member-photo-frame img + .photo-fallback {
+      display: none;
+    }
+
+    .member-photo-frame img.broken {
+      display: none;
+    }
+
+    .member-photo-frame img.broken + .photo-fallback {
+      display: grid;
+    }
+
+    .challenger-reveal h3 {
+      font-size: 2rem;
+      letter-spacing: -0.06em;
+      margin-bottom: 4px;
+    }
+
+    .member-role {
+      color: var(--rust);
+      font-weight: 950;
+      margin-bottom: 12px;
+    }
+
+    .click-hint {
+      position: relative;
+      z-index: 4;
+      font-size: 0.86rem;
+      color: rgba(255,250,240,0.78);
+      font-weight: 850;
     }
 
     .tag-list,
@@ -622,7 +1017,7 @@
       align-items: stretch;
     }
 
-    .route-map-visual {
+    .route-map-card {
       position: relative;
       min-height: 440px;
       border-radius: 28px;
@@ -632,24 +1027,6 @@
         radial-gradient(circle at 80% 80%, rgba(199, 92, 44, 0.20), transparent 13rem),
         repeating-linear-gradient(45deg, rgba(31,41,51,0.055), rgba(31,41,51,0.055) 1px, transparent 1px, transparent 24px),
         rgba(255, 250, 240, 0.82);
-    }
-
-    .route-svg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
-
-    .route-svg polyline {
-      fill: none;
-      stroke: var(--rust);
-      stroke-width: 8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-dasharray: 14 14;
-      opacity: 0.82;
     }
 
     .route-point {
@@ -703,7 +1080,6 @@
       border-radius: 999px;
       border: 1px solid rgba(31,41,51,0.12);
       background: rgba(255,250,240,0.82);
-      font: inherit;
       font-weight: 750;
       color: var(--ink);
       outline: none;
@@ -766,6 +1142,12 @@
       flex-wrap: wrap;
     }
 
+    @media (max-width: 1060px) {
+      .home-shortcuts {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
     @media (max-width: 980px) {
       .nav {
         align-items: flex-start;
@@ -793,9 +1175,10 @@
         display: flex;
       }
 
-      .hero,
+      .home-hero,
       .grid.three,
       .grid.two,
+      .team-grid,
       .route-planner {
         grid-template-columns: 1fr;
       }
@@ -812,6 +1195,34 @@
       .blog-post {
         grid-template-columns: 1fr;
       }
+
+      .home-hero {
+        min-height: unset;
+      }
+
+      .challenger-card {
+        min-height: 470px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .home-shortcuts {
+        grid-template-columns: 1fr;
+      }
+
+      .mini-stats,
+      .spec-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .route-map {
+        min-height: 320px;
+      }
+
+      .label-note,
+      .map-region {
+        display: none;
+      }
     }
 
     @media (max-width: 560px) {
@@ -819,31 +1230,41 @@
         width: min(100% - 22px, 1180px);
       }
 
+      main {
+        padding-top: 28px;
+      }
+
+      h1 {
+        font-size: clamp(3.2rem, 18vw, 5rem);
+      }
+
       .hero-actions .button,
       .donation-card .button {
         width: 100%;
       }
 
-      .map-card {
-        min-height: 330px;
+      .map-stop.start,
+      .map-stop.finish {
+        min-width: 52px;
+        height: 52px;
       }
 
-      .pin {
-        width: 62px;
-        height: 62px;
+      .map-label {
+        font-size: 0.82rem;
+        padding: 8px 10px;
       }
 
-      .mini-stats,
-      .spec-grid {
-        grid-template-columns: 1fr;
+      .challenger-card {
+        min-height: 500px;
       }
     }
   </style>
 </head>
+
 <body>
   <header class="topbar">
     <nav class="site-shell nav" aria-label="Navigation principale">
-      <a class="brand" href="#home" id="homeLink" aria-label="Accueil">
+      <a class="brand" href="#home" data-page-link="home" aria-label="Accueil">
         <span class="brand-mark">🚙</span>
         <span>Nom de l'équipe<br><small>Mongol Rally 2027</small></span>
       </a>
@@ -851,9 +1272,10 @@
       <button class="mobile-menu-button" type="button" aria-label="Ouvrir le menu" id="menuButton">Menu</button>
 
       <div class="nav-links" id="navLinks">
+        <a class="nav-link" href="#home" data-page-link="home">Accueil</a>
         <a class="nav-link" href="#team" data-page-link="team">Qui nous sommes</a>
-        <a class="nav-link" href="#car" data-page-link="car">La voiture</a>
         <a class="nav-link" href="#rally" data-page-link="rally">Le Mongol Rally</a>
+        <a class="nav-link" href="#car" data-page-link="car">La voiture</a>
         <a class="nav-link" href="#route" data-page-link="route">La route</a>
         <a class="nav-link" href="#donner" data-page-link="donner">Donner</a>
         <a class="nav-link" href="#blog" data-page-link="blog">Blog</a>
@@ -861,89 +1283,218 @@
     </nav>
   </header>
 
-  <section class="site-shell hero" id="home">
-    <div>
-      <span class="eyebrow">Projet étudiant • grande route • petite voiture</span>
-      <h1>Une vieille caisse. Trois potes. Beaucoup trop de kilomètres.</h1>
-      <p>
-        En 2027, notre équipe se lance dans le Mongol Rally : une aventure mécanique,
-        humaine et légèrement déraisonnable à travers l'Europe et l'Asie centrale.
-        L'objectif : partir avec une voiture minuscule, raconter le voyage, soutenir une cause,
-        et revenir avec des histoires que même Google Maps n'aurait pas osé proposer.
-      </p>
-      <div class="hero-actions">
-        <a class="button primary" href="#donner" data-page-link="donner">Soutenir le projet</a>
-        <a class="button secondary" href="#blog" data-page-link="blog">Voir les avancées</a>
-      </div>
-    </div>
+  <main class="site-shell">
+    <section class="page active" id="home" data-page="home">
+      <div class="home-hero">
+        <div>
+          <span class="eyebrow">Projet étudiant • grande route • petite voiture</span>
+          <h1>Une vieille caisse. Trois potes. Beaucoup trop de kilomètres.</h1>
+          <p>
+            En 2027, notre équipe se lance dans le Mongol Rally : une aventure mécanique,
+            humaine et légèrement déraisonnable entre Prague et Oskemen, au Kazakhstan.
+            L'objectif : partir avec une voiture minuscule, raconter le voyage, soutenir une cause,
+            et revenir avec des histoires que même Google Maps n'aurait pas osé proposer.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#donner" data-page-link="donner">Soutenir le projet</a>
+            <a class="button secondary" href="#blog" data-page-link="blog">Voir les avancées</a>
+          </div>
+        </div>
 
-    <aside class="hero-card" aria-label="Carte stylisée du projet">
-      <div class="map-card">
-        <div class="route-line" aria-hidden="true"></div>
-        <div class="pin start"><span>🇪🇺</span></div>
-        <div class="pin finish"><span>🏁</span></div>
-        <div class="map-label one">Départ : Europe</div>
-        <div class="map-label two">Objectif : Asie centrale</div>
-      </div>
-      <div class="mini-stats">
-        <div class="stat"><strong>3</strong><span>membres</span></div>
-        <div class="stat"><strong>1</strong><span>shitbox héroïque</span></div>
-        <div class="stat"><strong>∞</strong><span>galères probables</span></div>
-      </div>
-    </aside>
-  </section>
+        <aside class="home-map-card" aria-label="Carte stylisée du trajet Prague Oskemen">
+          <div class="map-title-row">
+            <div>
+              <span class="eyebrow">Trajet cible</span>
+              <h2>Prague → Oskemen</h2>
+            </div>
+            <p>Une route indicative à affiner avec les visas, les frontières, la saison et l'humeur de la voiture.</p>
+          </div>
 
-  <main class="site-shell" id="content-start">
-    <section class="page active" id="team" data-page="team">
+          <div class="route-map">
+            <span class="map-region region-europe">Europe</span>
+            <span class="map-region region-caucasus">Caucase</span>
+            <span class="map-region region-asia">Asie centrale</span>
+
+            <svg class="route-svg" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="routeGradient" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0%" stop-color="#c75c2c" />
+                  <stop offset="55%" stop-color="#52796f" />
+                  <stop offset="100%" stop-color="#8ecae6" />
+                </linearGradient>
+              </defs>
+              <polyline class="route-shadow" points="140,318 320,344 480,286 600,255 720,260 850,250" />
+              <polyline class="route-main" points="140,318 320,344 480,286 600,255 720,260 850,250" />
+            </svg>
+
+            <div class="map-stop start"><span>Pra</span></div>
+            <div class="map-stop small stop-istanbul"></div>
+            <div class="map-stop small stop-caucasus"></div>
+            <div class="map-stop small stop-caspian"></div>
+            <div class="map-stop small stop-steppe"></div>
+            <div class="map-stop finish"><span>Ösk</span></div>
+
+            <div class="map-label label-prague">Départ : Prague</div>
+            <div class="map-label label-oskemen">Arrivée : Oskemen</div>
+            <div class="map-label label-note">≈ 8 000 à 10 000 km selon l'itinéraire</div>
+          </div>
+
+          <div class="mini-stats">
+            <div class="stat"><strong>3</strong><span>membres</span></div>
+            <div class="stat"><strong>1</strong><span>shitbox héroïque</span></div>
+            <div class="stat"><strong>∞</strong><span>galères probables</span></div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="home-shortcuts" aria-label="Accès rapides aux sections">
+        <a class="shortcut-card" href="#team" data-page-link="team">
+          <span class="shortcut-icon">👥</span>
+          <div>
+            <h3>Qui nous sommes</h3>
+            <p>Rencontrer les challengers.</p>
+          </div>
+        </a>
+        <a class="shortcut-card" href="#rally" data-page-link="rally">
+          <span class="shortcut-icon">🏁</span>
+          <div>
+            <h3>Le rallye</h3>
+            <p>Comprendre le délire.</p>
+          </div>
+        </a>
+        <a class="shortcut-card" href="#car" data-page-link="car">
+          <span class="shortcut-icon">🔧</span>
+          <div>
+            <h3>La voiture</h3>
+            <p>Suivre la future épave.</p>
+          </div>
+        </a>
+        <a class="shortcut-card" href="#route" data-page-link="route">
+          <span class="shortcut-icon">🗺️</span>
+          <div>
+            <h3>La route</h3>
+            <p>Explorer les étapes.</p>
+          </div>
+        </a>
+        <a class="shortcut-card" href="#donner" data-page-link="donner">
+          <span class="shortcut-icon">💛</span>
+          <div>
+            <h3>Donner</h3>
+            <p>Aider le projet.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="page" id="team" data-page="team">
       <div class="section-header">
         <h2>Qui nous sommes</h2>
         <p>
-          Une équipe de trois étudiants avec une envie simple : transformer une idée absurde
-          en projet concret, documenté, sponsorisable et surtout mémorable.
+          Cliquez sur un portrait pour révéler le membre de l'équipe. Pour l'instant les photos
+          sont des emplacements prêts à remplacer : ajoutez simplement vos images dans
+          <strong>assets/images/team/</strong>.
         </p>
       </div>
 
-      <div class="grid three">
-        <article class="card">
-          <div class="avatar">A</div>
-          <h3>Axel</h3>
-          <p>
-            Coordination du projet, suivi budget, communication et bricolages douteux mais assumés.
-            À personnaliser avec une vraie bio courte et une photo.
-          </p>
-          <div class="tag-list">
-            <span class="tag">Organisation</span>
-            <span class="tag">Mécanique</span>
-            <span class="tag">Communication</span>
+      <div class="team-grid">
+        <button class="challenger-card" type="button" data-member="0" aria-label="Révéler Axel">
+          <div class="challenger-stage">
+            <h3 class="challenger-alert">A new teammate has appeared!</h3>
+            <div class="silhouette" aria-hidden="true">
+              <span class="arm-left"></span>
+              <span class="arm-right"></span>
+              <span class="leg-left"></span>
+              <span class="leg-right"></span>
+            </div>
+            <div>
+              <span class="challenger-name-hidden">Challenger 01</span>
+              <p class="click-hint">Clique pour révéler le pilote.</p>
+            </div>
           </div>
-        </article>
+          <div class="challenger-reveal">
+            <div class="member-photo-frame">
+              <img src="./assets/images/team/axel.jpg" alt="Portrait d'Axel" onerror="this.classList.add('broken')" />
+              <div class="photo-fallback">A</div>
+            </div>
+            <h3>Axel</h3>
+            <p class="member-role">Coordination • budget • mécanique optimiste</p>
+            <p>
+              À compléter : une bio courte, marrante et crédible. Exemple : responsable de transformer
+              les mauvaises idées en tableaux Excel, puis en vrais problèmes mécaniques.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Organisation</span>
+              <span class="tag">Mécanique</span>
+              <span class="tag">Communication</span>
+            </div>
+          </div>
+        </button>
 
-        <article class="card">
-          <div class="avatar">?</div>
-          <h3>Noah</h3>
-          <p>
-            Présentation à compléter : veut mettre des turbo partout, il a pas compris qu'on avait pas de budget
-          </p>
-          <div class="tag-list">
-            <span class="tag">Navigation</span>
-            <span class="tag">Logistique</span>
-            <span class="tag">Survie</span>
+        <button class="challenger-card" type="button" data-member="1" aria-label="Révéler le membre 2">
+          <div class="challenger-stage">
+            <h3 class="challenger-alert">A new teammate has appeared!</h3>
+            <div class="silhouette" aria-hidden="true">
+              <span class="arm-left"></span>
+              <span class="arm-right"></span>
+              <span class="leg-left"></span>
+              <span class="leg-right"></span>
+            </div>
+            <div>
+              <span class="challenger-name-hidden">Challenger 02</span>
+              <p class="click-hint">Clique pour révéler le copilote.</p>
+            </div>
           </div>
-        </article>
+          <div class="challenger-reveal">
+            <div class="member-photo-frame">
+              <img src="./assets/images/team/membre-2.jpg" alt="Portrait du membre 2" onerror="this.classList.add('broken')" />
+              <div class="photo-fallback">?</div>
+            </div>
+            <h3>Membre 2</h3>
+            <p class="member-role">Navigation • logistique • survie douce</p>
+            <p>
+              À compléter : rôle dans l'équipe, compétences utiles, raison de participer,
+              et le détail inquiétant qui prouve que cette personne est parfaite pour le rallye.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Navigation</span>
+              <span class="tag">Logistique</span>
+              <span class="tag">Survie</span>
+            </div>
+          </div>
+        </button>
 
-        <article class="card">
-          <div class="avatar">?</div>
-          <h3>Yoann</h3>
-          <p>
-            Présentation à compléter : celui ou celle qui sait garder son calme quand la voiture
-            décide de devenir un barbecue roulant au milieu de nulle part.
-          </p>
-          <div class="tag-list">
-            <span class="tag">Sponsors</span>
-            <span class="tag">Vidéo</span>
-            <span class="tag">Réparations</span>
+        <button class="challenger-card" type="button" data-member="2" aria-label="Révéler le membre 3">
+          <div class="challenger-stage">
+            <h3 class="challenger-alert">A new teammate has appeared!</h3>
+            <div class="silhouette" aria-hidden="true">
+              <span class="arm-left"></span>
+              <span class="arm-right"></span>
+              <span class="leg-left"></span>
+              <span class="leg-right"></span>
+            </div>
+            <div>
+              <span class="challenger-name-hidden">Challenger 03</span>
+              <p class="click-hint">Clique pour révéler le mécano de secours.</p>
+            </div>
           </div>
-        </article>
+          <div class="challenger-reveal">
+            <div class="member-photo-frame">
+              <img src="./assets/images/team/membre-3.jpg" alt="Portrait du membre 3" onerror="this.classList.add('broken')" />
+              <div class="photo-fallback">?</div>
+            </div>
+            <h3>Membre 3</h3>
+            <p class="member-role">Sponsors • vidéo • réparations au scotch</p>
+            <p>
+              À compléter : mission principale, compétences, personnalité, et pourquoi cette personne
+              restera calme quand la voiture commencera à sentir le grille-pain.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Sponsors</span>
+              <span class="tag">Vidéo</span>
+              <span class="tag">Réparations</span>
+            </div>
+          </div>
+        </button>
       </div>
 
       <div class="callout">
@@ -952,6 +1503,76 @@
           Faire un projet transparent : budget clair, choix techniques expliqués,
           suivi régulier, et une vraie place donnée aux personnes qui nous soutiennent.
         </p>
+      </div>
+    </section>
+
+    <section class="page" id="rally" data-page="rally">
+      <div class="section-header">
+        <h2>Le Mongol Rally</h2>
+        <p>
+          Le Mongol Rally n'est pas une course classique. C'est plutôt l'anti-rallye :
+          peu d'assistance, beaucoup d'imprévu, et un véhicule qui n'a objectivement rien demandé.
+        </p>
+      </div>
+
+      <div class="grid two">
+        <article class="card">
+          <h3>Le principe</h3>
+          <p>
+            Partir depuis Prague et rejoindre Oskemen, au Kazakhstan, avec une voiture petite,
+            simple, peu puissante et franchement pas taillée pour l'aventure. Le trajet exact
+            est à construire par chaque équipe : c'est là que commencent les bonnes idées,
+            les mauvaises décisions et les anecdotes.
+          </p>
+          <p style="margin-top: 14px;">
+            <a class="button secondary" href="https://www.theadventurists.com/mongol-rally/" target="_blank" rel="noopener">Voir le site officiel</a>
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Pourquoi on le fait</h3>
+          <p>
+            Pour vivre une aventure hors cadre, apprendre à préparer un projet de A à Z,
+            lever des fonds, rencontrer des gens, et prouver qu'une petite voiture peut avoir
+            un très grand sens de l'humour.
+          </p>
+        </article>
+      </div>
+
+      <div class="section-header">
+        <h2>Plan de préparation</h2>
+        <p>Une feuille de route simple pour transformer le délire en vrai projet.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">Maintenant</div>
+          <div>
+            <h3>Construire l'identité</h3>
+            <p>Nom d'équipe, logo, ton, page web, dossier sponsor et premiers réseaux sociaux.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2026</div>
+          <div>
+            <h3>Trouver la voiture</h3>
+            <p>Comparer les modèles, acheter une petite voiture simple, faire les réparations prioritaires.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2026–2027</div>
+          <div>
+            <h3>Préparer la route</h3>
+            <p>Documents, visas, assurances, équipement, autonomie électrique, communication et sécurité.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Été 2027</div>
+          <div>
+            <h3>Prendre la route</h3>
+            <p>Publier le carnet de bord, remercier les soutiens et essayer de garder les roues attachées.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1026,76 +1647,6 @@
       </div>
     </section>
 
-    <section class="page" id="rally" data-page="rally">
-      <div class="section-header">
-        <h2>Le Mongol Rally</h2>
-        <p>
-          Le Mongol Rally n'est pas une course classique. C'est plutôt l'anti-rallye :
-          peu d'assistance, beaucoup d'imprévu, et un véhicule qui n'a objectivement rien demandé.
-        </p>
-      </div>
-
-      <div class="grid two">
-        <article class="card">
-          <h3>Le principe</h3>
-          <p>
-            Partir depuis l'Europe et rejoindre l'Asie centrale avec une voiture petite,
-            simple, peu puissante et franchement pas taillée pour l'aventure. Le trajet exact
-            est à construire par chaque équipe : c'est là que commencent les bonnes idées,
-            les mauvaises décisions et les anecdotes.
-          </p>
-          <p style="margin-top: 14px;">
-            <a class="button secondary" href="https://www.theadventurists.com/mongol-rally/" target="_blank" rel="noopener">Voir le site officiel</a>
-          </p>
-        </article>
-
-        <article class="card">
-          <h3>Pourquoi on le fait</h3>
-          <p>
-            Pour vivre une aventure hors cadre, apprendre à préparer un projet de A à Z,
-            lever des fonds, rencontrer des gens, et prouver qu'une petite voiture peut avoir
-            un très grand sens de l'humour.
-          </p>
-        </article>
-      </div>
-
-      <div class="section-header">
-        <h2>Plan de préparation</h2>
-        <p>Une feuille de route simple pour transformer le délire en vrai projet.</p>
-      </div>
-
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-date">Maintenant</div>
-          <div>
-            <h3>Construire l'identité</h3>
-            <p>Nom d'équipe, logo, ton, page web, dossier sponsor et premiers réseaux sociaux.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-date">2026</div>
-          <div>
-            <h3>Trouver la voiture</h3>
-            <p>Comparer les modèles, acheter une petite voiture simple, faire les réparations prioritaires.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-date">2026–2027</div>
-          <div>
-            <h3>Préparer la route</h3>
-            <p>Documents, visas, assurances, équipement, autonomie électrique, communication et sécurité.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-date">Été 2027</div>
-          <div>
-            <h3>Prendre la route</h3>
-            <p>Publier le carnet de bord, remercier les soutiens et essayer de garder les roues attachées.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="page" id="route" data-page="route">
       <div class="section-header">
         <h2>La route</h2>
@@ -1107,9 +1658,10 @@
       </div>
 
       <div class="route-planner">
-        <div class="route-map-visual" aria-label="Carte interactive stylisée de la route">
+        <div class="route-map-card" aria-label="Carte interactive stylisée de la route">
           <svg class="route-svg" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
-            <polyline points="80,310 210,250 335,290 470,210 610,245 755,185 895,230" />
+            <polyline class="route-shadow" points="80,310 210,250 335,290 470,210 610,245 755,185 895,230" />
+            <polyline class="route-main" points="80,310 210,250 335,290 470,210 610,245 755,185 895,230" />
           </svg>
           <div id="routePoints"></div>
         </div>
@@ -1150,7 +1702,7 @@
             <div class="progress-label"><span>Objectif caritatif</span><span>0%</span></div>
             <div class="progress"><span style="--value: 0%"></span></div>
           </div>
-          <a class="button primary" href="https://www.youtube.com/watch?v=2qBlE2-WL60" target="_blank" rel="noopener">Remplacer par le lien officiel</a>
+          <a class="button primary" href="https://example.com" target="_blank" rel="noopener">Remplacer par le lien officiel</a>
         </article>
 
         <article class="card donation-card">
@@ -1165,7 +1717,7 @@
             <div class="progress-label"><span>Budget projet estimé</span><span>0%</span></div>
             <div class="progress"><span style="--value: 0%"></span></div>
           </div>
-          <a class="button secondary" href="https://www.youtube.com/watch?v=2qBlE2-WL60" target="_blank" rel="noopener">Remplacer par votre cagnotte</a>
+          <a class="button secondary" href="https://example.com" target="_blank" rel="noopener">Remplacer par votre cagnotte</a>
         </article>
       </div>
 
@@ -1245,12 +1797,11 @@
   </footer>
 
   <script>
-    const pageIds = ["team", "car", "rally", "route", "donner", "blog"];
+    const pageIds = ["home", "team", "rally", "car", "route", "donner", "blog"];
     const pages = document.querySelectorAll(".page");
     const links = document.querySelectorAll("[data-page-link]");
     const navLinks = document.getElementById("navLinks");
     const menuButton = document.getElementById("menuButton");
-    const contentStart = document.getElementById("content-start");
 
     const blogPosts = [
       {
@@ -1275,11 +1826,11 @@
 
     const routeStages = [
       {
-        name: "France",
+        name: "Prague",
         label: "Départ",
         x: 8,
         y: 60,
-        status: "Base de départ à confirmer",
+        status: "Départ officiel visé",
         distance: "0 km",
         description: "Rassembler l'équipe, charger la voiture, faire les derniers tests et partir sans oublier les papiers. Idéalement aussi sans oublier un membre de l'équipe.",
         todos: ["Contrôle mécanique final", "Photos de départ", "Inventaire coffre"]
@@ -1315,7 +1866,7 @@
         todos: ["Vérifier passages possibles", "Prévoir pièces de secours", "Identifier garages utiles"]
       },
       {
-        name: "Asie centrale ou alternative",
+        name: "Asie centrale",
         label: "Grand vide",
         x: 61,
         y: 47,
@@ -1326,22 +1877,22 @@
       },
       {
         name: "Kazakhstan",
-        label: "Final",
+        label: "Steppe",
         x: 76,
         y: 35,
-        status: "Objectif symbolique",
-        distance: "≈ 8 000–10 000 km",
-        description: "Arrivée visée selon l'édition, les règles et les conditions du moment. La route exacte sera fixée plus tard.",
-        todos: ["Confirmer arrivée officielle", "Préparer logistique retour", "Célébrer sans casser la voiture"]
+        status: "Dernière grande portion",
+        distance: "≈ 8 000 km",
+        description: "Traverser une immense zone de steppe, gérer la fatigue, les distances et les derniers caprices mécaniques.",
+        todos: ["Vérifier carburant", "Planifier étapes longues", "Préparer arrivée"]
       },
       {
-        name: "Retour / après-rallye",
-        label: "Bilan",
+        name: "Oskemen",
+        label: "Arrivée",
         x: 90,
         y: 44,
-        status: "À anticiper tôt",
-        distance: "À définir",
-        description: "Gérer le retour, la voiture, les comptes, les remerciements, les photos et le bilan du projet.",
+        status: "Objectif final",
+        distance: "≈ 8 000–10 000 km",
+        description: "Arrivée visée au Kazakhstan. Ensuite : gérer le retour, la voiture, les comptes, les remerciements, les photos et le bilan du projet.",
         todos: ["Remercier donateurs", "Publier budget final", "Faire le film du projet"]
       }
     ];
@@ -1354,11 +1905,11 @@
 
     function getCurrentPage() {
       const hash = window.location.hash.replace("#", "");
-      return pageIds.includes(hash) ? hash : "team";
+      return pageIds.includes(hash) ? hash : "home";
     }
 
-    function showPage(pageId, shouldScroll) {
-      const safePageId = pageIds.includes(pageId) ? pageId : "team";
+    function showPage(pageId, shouldScroll = true) {
+      const safePageId = pageIds.includes(pageId) ? pageId : "home";
 
       pages.forEach(page => {
         page.classList.toggle("active", page.dataset.page === safePageId);
@@ -1371,7 +1922,7 @@
       navLinks.classList.remove("open");
 
       if (shouldScroll) {
-        contentStart.scrollIntoView({ behavior: "smooth", block: "start" });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
     }
 
@@ -1382,13 +1933,6 @@
         history.pushState(null, "", `#${pageId}`);
         showPage(pageId, true);
       });
-    });
-
-    document.getElementById("homeLink").addEventListener("click", event => {
-      event.preventDefault();
-      history.pushState(null, "", "#home");
-      navLinks.classList.remove("open");
-      window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
     window.addEventListener("popstate", () => {
@@ -1477,6 +2021,12 @@
       `).join("");
     }
 
+    document.querySelectorAll(".challenger-card").forEach(card => {
+      card.addEventListener("click", () => {
+        card.classList.toggle("revealed");
+      });
+    });
+
     menuButton.addEventListener("click", () => navLinks.classList.toggle("open"));
     document.getElementById("blogSearch").addEventListener("input", renderBlog);
     document.getElementById("blogFilter").addEventListener("change", renderBlog);
@@ -1484,7 +2034,7 @@
 
     renderBlog();
     renderRoute();
-    showPage(getCurrentPage(), window.location.hash && window.location.hash !== "#home");
+    showPage(getCurrentPage(), false);
   </script>
 </body>
 </html>
