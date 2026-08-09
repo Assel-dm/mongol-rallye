@@ -300,9 +300,11 @@
 
     .route-image-frame img {
       width: 100%;
-      height: clamp(280px, 42vw, 430px);
-      object-fit: cover;
+      height: auto;
+      max-height: 560px;
+      object-fit: contain;
       object-position: center;
+      background: rgba(31, 41, 51, 0.06);
     }
 
     .route-image-caption {
@@ -713,6 +715,102 @@
       color: var(--paper);
     }
 
+    .instagram-cta {
+      margin-top: 18px;
+      padding: 28px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(142, 202, 230, 0.20), transparent 13rem),
+        linear-gradient(135deg, var(--ink), #111827);
+      color: var(--paper);
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .instagram-cta h3 {
+      font-size: clamp(1.6rem, 3vw, 2.6rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      margin-bottom: 8px;
+    }
+
+    .instagram-cta p {
+      color: rgba(255, 250, 240, 0.78);
+      font-weight: 650;
+      max-width: 700px;
+    }
+
+    .instagram-cta .button {
+      flex: 0 0 auto;
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .rally-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.55fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .rally-text-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .rally-logo-card {
+      min-height: 100%;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 28px;
+    }
+
+    .rally-logo-card img {
+      width: min(100%, 360px);
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 30px rgba(31, 41, 51, 0.18));
+      margin-bottom: 18px;
+    }
+
+    .rally-logo-card p {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .route-place-photo {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 22px;
+      margin: 16px 0;
+      box-shadow: 0 16px 34px rgba(31, 41, 51, 0.13);
+      border: 1px solid rgba(31, 41, 51, 0.08);
+      background: rgba(31, 41, 51, 0.06);
+    }
+
+    .route-photo-placeholder {
+      margin: 16px 0;
+      min-height: 160px;
+      border-radius: 22px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 20px;
+      background:
+        repeating-linear-gradient(45deg, rgba(31,41,51,0.05), rgba(31,41,51,0.05) 1px, transparent 1px, transparent 18px),
+        rgba(255, 255, 255, 0.50);
+      color: var(--muted);
+      font-weight: 850;
+      border: 1px dashed rgba(31, 41, 51, 0.18);
+    }
+
+
     .feature-list {
       display: grid;
       gap: 12px;
@@ -1110,7 +1208,8 @@
       .home-hero,
       .grid.three,
       .grid.two,
-      .route-planner {
+      .route-planner,
+      .rally-layout {
         grid-template-columns: 1fr;
       }
 
@@ -1383,12 +1482,15 @@
         </button>
       </div>
 
-      <div class="callout">
-        <h3>Notre promesse</h3>
-        <p>
-          Faire un projet transparent : budget clair, choix techniques expliqués,
-          suivi régulier, et une vraie place donnée aux personnes qui nous soutiennent.
-        </p>
+      <div class="instagram-cta">
+        <div>
+          <h3>Suivez l'équipe sur Instagram</h3>
+          <p>
+            Les coulisses, les galères, les votes pour le nom de la voiture et les actus du projet
+            seront publiés ici dès que la page sera créée.
+          </p>
+        </div>
+        <a class="button" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram à venir</a>
       </div>
     </section>
 
@@ -1401,28 +1503,37 @@
         </p>
       </div>
 
-      <div class="grid two">
-        <article class="card">
-          <h3>Le principe</h3>
-          <p>
-            Partir depuis Prague et rejoindre Oskemen, au Kazakhstan, avec une voiture petite,
-            simple, peu puissante et franchement pas taillée pour l'aventure. Le trajet exact
-            est à construire par chaque équipe : c'est là que commencent les bonnes idées,
-            les mauvaises décisions et les anecdotes.
-          </p>
-          <p style="margin-top: 14px;">
-            <a class="button secondary" href="https://www.theadventurists.com/mongol-rally/" target="_blank" rel="noopener">Voir le site officiel</a>
-          </p>
-        </article>
+      <div class="rally-layout">
+        <div class="rally-text-stack">
+          <article class="card">
+            <h3>Le principe</h3>
+            <p>
+              Partir depuis Prague et rejoindre Oskemen, au Kazakhstan, avec une voiture petite,
+              simple, peu puissante et franchement pas taillée pour l'aventure. Le trajet exact
+              est à construire par chaque équipe : c'est là que commencent les bonnes idées,
+              les mauvaises décisions et les anecdotes.
+            </p>
+            <p style="margin-top: 14px;">
+              <a class="button secondary" href="https://www.theadventurists.com/mongol-rally/" target="_blank" rel="noopener">Voir le site officiel</a>
+            </p>
+          </article>
 
-        <article class="card">
-          <h3>Pourquoi on le fait</h3>
-          <p>
-            Pour vivre une aventure hors cadre, apprendre à préparer un projet de A à Z,
-            lever des fonds, rencontrer des gens, et prouver qu'une petite voiture peut avoir
-            un très grand sens de l'humour.
-          </p>
-        </article>
+          <article class="card">
+            <h3>Pourquoi on le fait</h3>
+            <p>
+              Pour vivre une aventure hors cadre, apprendre à préparer un projet de A à Z,
+              lever des fonds, rencontrer des gens, et prouver qu'une petite voiture peut avoir
+              un très grand sens de l'humour.
+            </p>
+          </article>
+        </div>
+
+        <aside class="card rally-logo-card">
+          <div>
+            <img src="./assets/images/rally-logo.png" alt="Logo Mongol Rally The Adventurists">
+            <p>Le logo officiel du rallye, histoire de rappeler qu'on ne part pas seulement faire un très long contrôle technique.</p>
+          </div>
+        </aside>
       </div>
 
       <div class="section-header">
@@ -1546,8 +1657,8 @@
       <div class="route-planner">
         <div class="route-map-card" aria-label="Carte interactive stylisée de la route">
           <svg class="route-svg" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
-            <polyline class="route-shadow" points="80,310 210,250 335,290 470,210 610,245 755,185 895,230" />
-            <polyline class="route-main" points="80,310 210,250 335,290 470,210 610,245 755,185 895,230" />
+            <polyline class="route-shadow" points="50,374 130,312 240,250 360,290 490,210 630,245 770,185 910,230" />
+            <polyline class="route-main" points="50,374 130,312 240,250 360,290 490,210 630,245 770,185 910,230" />
           </svg>
           <div id="routePoints"></div>
         </div>
@@ -1713,72 +1824,98 @@
 
     const routeStages = [
       {
+        marker: "0",
+        name: "Jusqu'à Prague",
+        label: "Pré-départ",
+        x: 5,
+        y: 72,
+        status: "Déjà une aventure",
+        distance: "À définir",
+        image: "",
+        description: "Avant même le départ officiel, il faudra rejoindre Prague avec la voiture, l'équipe, les papiers, les outils et idéalement aucune fuite d'huile majeure.",
+        todos: ["Rejoindre Prague", "Tester la voiture chargée", "Arriver au départ sans avoir déjà tout cassé"]
+      },
+      {
+        marker: "1",
         name: "Prague",
-        label: "Départ",
-        x: 8,
+        label: "Départ officiel",
+        x: 13,
         y: 60,
         status: "Départ officiel visé",
         distance: "0 km",
+        image: "./assets/images/route/prague.jpg",
         description: "Rassembler l'équipe, charger la voiture, faire les derniers tests et partir sans oublier les papiers. Idéalement aussi sans oublier un membre de l'équipe.",
         todos: ["Contrôle mécanique final", "Photos de départ", "Inventaire coffre"]
       },
       {
+        marker: "2",
         name: "Europe centrale",
         label: "Lancement",
-        x: 21,
+        x: 24,
         y: 48,
         status: "Passage probable",
         distance: "≈ 1 500 km",
+        image: "",
         description: "Premiers vrais kilomètres, rodage de l'organisation, validation du rythme quotidien et du matériel.",
         todos: ["Tester navigation hors ligne", "Suivre consommation", "Publier le premier carnet de route"]
       },
       {
+        marker: "3",
         name: "Balkans / Turquie",
         label: "Transition",
-        x: 34,
+        x: 36,
         y: 56,
         status: "Itinéraire à arbitrer",
         distance: "≈ 3 000 km",
+        image: "",
         description: "Zone charnière du trajet : choix des pays, documents, passages de frontières et premières grosses chaleurs possibles.",
         todos: ["Comparer itinéraires", "Vérifier assurances", "Prévoir repos"]
       },
       {
+        marker: "4",
         name: "Caucase",
         label: "Montagne",
-        x: 47,
+        x: 49,
         y: 40,
         status: "Option très tentante",
         distance: "≈ 4 500 km",
+        image: "",
         description: "Routes plus exigeantes, paysages incroyables, mais préparation mécanique et administrative à prendre au sérieux.",
         todos: ["Vérifier passages possibles", "Prévoir pièces de secours", "Identifier garages utiles"]
       },
       {
+        marker: "5",
         name: "Asie centrale",
         label: "Grand vide",
-        x: 61,
+        x: 63,
         y: 47,
         status: "Dépendra des frontières",
         distance: "≈ 6 500 km",
+        image: "",
         description: "La partie aventureuse : longues distances, autonomie, météo, carburant, réseau mobile et gestion des imprévus.",
         todos: ["Plan eau/carburant", "Cartes offline", "Communication de secours"]
       },
       {
+        marker: "6",
         name: "Kazakhstan",
         label: "Steppe",
-        x: 76,
+        x: 77,
         y: 35,
         status: "Dernière grande portion",
         distance: "≈ 8 000 km",
+        image: "",
         description: "Traverser une immense zone de steppe, gérer la fatigue, les distances et les derniers caprices mécaniques.",
         todos: ["Vérifier carburant", "Planifier étapes longues", "Préparer arrivée"]
       },
       {
+        marker: "7",
         name: "Oskemen",
         label: "Arrivée",
-        x: 90,
+        x: 91,
         y: 44,
         status: "Objectif final",
         distance: "≈ 8 000–10 000 km",
+        image: "./assets/images/route/oskemen.jpg",
         description: "Arrivée visée au Kazakhstan. Ensuite : gérer le retour, la voiture, les comptes, les remerciements, les photos et le bilan du projet.",
         todos: ["Remercier donateurs", "Publier budget final", "Faire le film du projet"]
       }
@@ -1878,14 +2015,19 @@
 
       points.innerHTML = routeStages.map((stage, index) => `
         <button class="route-point ${index === activeIndex ? "active" : ""}" style="left: ${stage.x}%; top: ${stage.y}%;" data-route-index="${index}" aria-label="Voir l'étape ${stage.name}">
-          ${index + 1}
+          ${stage.marker}
         </button>
       `).join("");
 
       const stage = routeStages[activeIndex];
+      const photoBlock = stage.image
+        ? `<img class="route-place-photo" src="${stage.image}" alt="Photo de ${stage.name}">`
+        : `<div class="route-photo-placeholder">Photo de l'étape à ajouter</div>`;
+
       detail.innerHTML = `
         <span class="eyebrow">${stage.label} • ${stage.status}</span>
         <h3>${stage.name}</h3>
+        ${photoBlock}
         <p>${stage.description}</p>
         <div class="spec-grid">
           <div class="spec"><span>Distance cumulée</span><strong>${stage.distance}</strong></div>
