@@ -487,16 +487,16 @@
       transition: grid-template-columns 0.45s cubic-bezier(.2,.8,.2,1);
     }
 
-    .team-grid:has(.challenger-card.revealed[data-position="left"]) {
-      grid-template-columns: minmax(0, 2.2fr) minmax(170px, 0.62fr) minmax(170px, 0.62fr);
+    .team-grid.layout-left {
+      grid-template-columns: minmax(0, 2.35fr) minmax(170px, 0.58fr) minmax(170px, 0.58fr);
     }
 
-    .team-grid:has(.challenger-card.revealed[data-position="middle"]) {
-      grid-template-columns: minmax(170px, 0.62fr) minmax(0, 2.2fr) minmax(170px, 0.62fr);
+    .team-grid.layout-middle {
+      grid-template-columns: minmax(170px, 0.58fr) minmax(0, 2.35fr) minmax(170px, 0.58fr);
     }
 
-    .team-grid:has(.challenger-card.revealed[data-position="right"]) {
-      grid-template-columns: minmax(170px, 0.62fr) minmax(170px, 0.62fr) minmax(0, 2.2fr);
+    .team-grid.layout-right {
+      grid-template-columns: minmax(170px, 0.58fr) minmax(170px, 0.58fr) minmax(0, 2.35fr);
     }
 
     .challenger-card {
@@ -603,10 +603,17 @@
     }
 
     .challenger-card.revealed .portrait-layer {
-      left: 36%;
-      bottom: 10px;
-      width: min(58%, 390px);
-      height: 83%;
+      left: 33%;
+      bottom: 24px;
+      width: min(47%, 350px);
+      height: 80%;
+    }
+
+    .challenger-card.revealed .challenger-alert,
+    .challenger-card.revealed .click-hint {
+      opacity: 0;
+      transform: translateY(-12px);
+      pointer-events: none;
     }
 
     .portrait-layer img {
@@ -641,10 +648,10 @@
 
     .member-info {
       position: absolute;
-      top: 136px;
-      right: 24px;
-      bottom: 24px;
-      width: min(42%, 370px);
+      top: 150px;
+      right: 26px;
+      bottom: 26px;
+      width: min(43%, 390px);
       z-index: 7;
       display: flex;
       flex-direction: column;
@@ -1051,9 +1058,9 @@
       }
 
       .team-grid,
-      .team-grid:has(.challenger-card.revealed[data-position="left"]),
-      .team-grid:has(.challenger-card.revealed[data-position="middle"]),
-      .team-grid:has(.challenger-card.revealed[data-position="right"]) {
+      .team-grid.layout-left,
+      .team-grid.layout-middle,
+      .team-grid.layout-right {
         grid-template-columns: 1fr;
       }
 
@@ -1128,9 +1135,9 @@
     @media (max-width: 760px) {
       .challenger-card.revealed .portrait-layer {
         left: 50%;
-        width: min(78%, 330px);
-        height: 60%;
-        bottom: 170px;
+        width: min(70%, 300px);
+        height: 55%;
+        bottom: 178px;
       }
 
       .member-info {
@@ -1294,10 +1301,6 @@
     <section class="page" id="team" data-page="team">
       <div class="section-header">
         <h2>Qui nous sommes</h2>
-        <p>
-          Cliquez sur un portrait pour révéler le membre de l'équipe. L'effet garde le fond rouge :
-          l'ombre devient la photo, puis la bio apparaît dans la carte agrandie.
-        </p>
       </div>
 
       <div class="team-grid" id="teamGrid">
@@ -1305,8 +1308,8 @@
           <div class="challenger-stage">
             <h3 class="challenger-alert">Un nouveau coéquipier est apparu !</h3>
             <div class="portrait-layer" aria-hidden="true">
-              <img class="portrait-shadow" src="./assets/images/team/test-member.png" alt="">
-              <img class="portrait-photo" src="./assets/images/team/test-member.png" alt="">
+              <img class="portrait-shadow" src="./assets/images/team/member-shadow.png" alt="">
+              <img class="portrait-photo" src="./assets/images/team/member-full.png" alt="">
             </div>
             <span class="click-hint">Clique pour révéler le pilote.</span>
             <div class="member-info">
@@ -1331,8 +1334,8 @@
           <div class="challenger-stage">
             <h3 class="challenger-alert">Un nouveau coéquipier est apparu !</h3>
             <div class="portrait-layer" aria-hidden="true">
-              <img class="portrait-shadow" src="./assets/images/team/test-member.png" alt="">
-              <img class="portrait-photo" src="./assets/images/team/test-member.png" alt="">
+              <img class="portrait-shadow" src="./assets/images/team/member-shadow.png" alt="">
+              <img class="portrait-photo" src="./assets/images/team/member-full.png" alt="">
             </div>
             <span class="click-hint">Clique pour révéler le copilote.</span>
             <div class="member-info">
@@ -1357,8 +1360,8 @@
           <div class="challenger-stage">
             <h3 class="challenger-alert">Un nouveau coéquipier est apparu !</h3>
             <div class="portrait-layer" aria-hidden="true">
-              <img class="portrait-shadow" src="./assets/images/team/test-member.png" alt="">
-              <img class="portrait-photo" src="./assets/images/team/test-member.png" alt="">
+              <img class="portrait-shadow" src="./assets/images/team/member-shadow.png" alt="">
+              <img class="portrait-photo" src="./assets/images/team/member-full.png" alt="">
             </div>
             <span class="click-hint">Clique pour révéler le mécano de secours.</span>
             <div class="member-info">
@@ -1908,16 +1911,17 @@
     document.querySelectorAll(".challenger-card").forEach(card => {
       card.addEventListener("click", () => {
         const wasRevealed = card.classList.contains("revealed");
+        const position = card.dataset.position;
 
         document.querySelectorAll(".challenger-card").forEach(otherCard => {
           otherCard.classList.remove("revealed");
         });
 
-        if (wasRevealed) {
-          teamGrid.classList.remove("has-revealed");
-        } else {
+        teamGrid.classList.remove("has-revealed", "layout-left", "layout-middle", "layout-right");
+
+        if (!wasRevealed) {
           card.classList.add("revealed");
-          teamGrid.classList.add("has-revealed");
+          teamGrid.classList.add("has-revealed", `layout-${position}`);
         }
       });
     });
