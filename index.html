@@ -1013,20 +1013,51 @@
         rgba(255, 250, 240, 0.82);
     }
 
+    .route-map-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: var(--stage-image);
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transform: scale(1.03);
+      transition: opacity 0.35s ease, transform 0.55s ease;
+      z-index: 0;
+    }
+
+    .route-map-card.has-photo::before {
+      opacity: 0.42;
+      transform: scale(1);
+    }
+
+    .route-map-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(255,250,240,0.70), rgba(255,250,240,0.38)),
+        repeating-linear-gradient(45deg, rgba(31,41,51,0.065), rgba(31,41,51,0.065) 1px, transparent 1px, transparent 24px);
+      z-index: 1;
+      pointer-events: none;
+    }
+
     .route-svg {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       pointer-events: none;
+      z-index: 2;
     }
 
     .route-svg .route-shadow {
       fill: none;
-      stroke: rgba(31, 41, 51, 0.18);
-      stroke-width: 11;
+      stroke: rgba(31, 41, 51, 0.22);
+      stroke-width: 13;
       stroke-linecap: round;
       stroke-linejoin: round;
+      stroke-dasharray: 2 22;
     }
 
     .route-svg .route-main {
@@ -1035,6 +1066,14 @@
       stroke-width: 8;
       stroke-linecap: round;
       stroke-linejoin: round;
+      stroke-dasharray: 2 22;
+      filter: drop-shadow(0 8px 10px rgba(31, 41, 51, 0.16));
+    }
+
+    #routePoints {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
     }
 
     .route-point {
@@ -1051,14 +1090,21 @@
       font-weight: 950;
       box-shadow: 0 12px 28px rgba(31, 41, 51, 0.22);
       cursor: pointer;
-      transition: 0.2s ease;
+      transition: width 0.2s ease, height 0.2s ease, transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .route-point:hover,
+    .route-point:hover {
+      transform: translate(-50%, -50%) translateY(-4px) rotate(-3deg);
+    }
+
     .route-point.active {
+      width: 64px;
+      height: 64px;
+      font-size: 1.18rem;
       background: var(--rust);
       color: var(--white);
-      transform: translate(-50%, -50%) translateY(-4px) rotate(-3deg);
+      transform: translate(-50%, -50%) translateY(-6px) rotate(-4deg);
+      box-shadow: 0 18px 36px rgba(199, 92, 44, 0.34);
     }
 
     .route-detail h3 {
@@ -1657,8 +1703,8 @@
       <div class="route-planner">
         <div class="route-map-card" aria-label="Carte interactive stylisée de la route">
           <svg class="route-svg" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
-            <polyline class="route-shadow" points="50,374 130,312 240,250 360,290 490,210 630,245 770,185 910,230" />
-            <polyline class="route-main" points="50,374 130,312 240,250 360,290 490,210 630,245 770,185 910,230" />
+            <polyline class="route-shadow" points="50,374 90,330 130,312 180,270 240,250 295,306 360,290 420,238 490,210 560,272 630,245 700,213 770,185 836,242 910,230" />
+            <polyline class="route-main" points="50,374 90,330 130,312 180,270 240,250 295,306 360,290 420,238 490,210 560,272 630,245 700,213 770,185 836,242 910,230" />
           </svg>
           <div id="routePoints"></div>
         </div>
@@ -2010,8 +2056,9 @@
       const points = document.getElementById("routePoints");
       const detail = document.getElementById("routeDetail");
       const stats = document.getElementById("routeStats");
+      const routeMap = document.querySelector(".route-map-card");
 
-      if (!points || !detail || !stats) return;
+      if (!points || !detail || !stats || !routeMap) return;
 
       points.innerHTML = routeStages.map((stage, index) => `
         <button class="route-point ${index === activeIndex ? "active" : ""}" style="left: ${stage.x}%; top: ${stage.y}%;" data-route-index="${index}" aria-label="Voir l'étape ${stage.name}">
@@ -2020,14 +2067,17 @@
       `).join("");
 
       const stage = routeStages[activeIndex];
-      const photoBlock = stage.image
-        ? `<img class="route-place-photo" src="${stage.image}" alt="Photo de ${stage.name}">`
-        : `<div class="route-photo-placeholder">Photo de l'étape à ajouter</div>`;
+      if (stage.image) {
+        routeMap.classList.add("has-photo");
+        routeMap.style.setProperty("--stage-image", `url("${stage.image}")`);
+      } else {
+        routeMap.classList.remove("has-photo");
+        routeMap.style.removeProperty("--stage-image");
+      }
 
       detail.innerHTML = `
         <span class="eyebrow">${stage.label} • ${stage.status}</span>
         <h3>${stage.name}</h3>
-        ${photoBlock}
         <p>${stage.description}</p>
         <div class="spec-grid">
           <div class="spec"><span>Distance cumulée</span><strong>${stage.distance}</strong></div>
