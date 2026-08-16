@@ -840,9 +840,9 @@
 
     .construction-tape {
       position: absolute;
-      left: -18%;
-      width: 136%;
-      height: 82px;
+      left: -10%;
+      width: 120%;
+      height: 72px;
       display: flex;
       align-items: center;
       overflow: hidden;
@@ -873,19 +873,25 @@
     }
 
     .construction-tape.one {
-      top: 20%;
-      transform: rotate(-16deg);
+      top: 8%;
+      left: -6%;
+      width: 112%;
+      transform: rotate(-12deg);
     }
 
     .construction-tape.two {
-      bottom: 22%;
-      transform: rotate(15deg);
+      bottom: 8%;
+      left: -7%;
+      width: 114%;
+      transform: rotate(12deg);
     }
 
     .construction-tape.three {
-      top: 48%;
-      transform: rotate(-4deg);
-      opacity: 0.82;
+      top: 50%;
+      left: -8%;
+      width: 116%;
+      transform: rotate(2deg);
+      opacity: 0.78;
     }
 
     @keyframes tapeSlide {
@@ -917,7 +923,7 @@
       color: #465463;
       font-size: 1.08rem;
       font-weight: 650;
-      margin-bottom: 22px;
+      margin-bottom: 0;
     }
 
     .car-construction-status {
@@ -932,27 +938,6 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       font-size: 0.78rem;
-    }
-
-    .car-tape-reference {
-      position: absolute;
-      width: min(420px, 38vw);
-      opacity: 0.12;
-      filter: saturate(1.2);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .car-tape-reference.one {
-      left: -60px;
-      bottom: -40px;
-      transform: rotate(-13deg);
-    }
-
-    .car-tape-reference.two {
-      right: -70px;
-      top: -35px;
-      transform: rotate(18deg);
     }
 
     .blog-card-list {
@@ -1858,9 +1843,6 @@
 
     <section class="page" id="car" data-page="car">
       <div class="car-construction">
-        <img class="car-tape-reference one" src="./assets/images/car/tape-reference.png" alt="" aria-hidden="true">
-        <img class="car-tape-reference two" src="./assets/images/car/tape-reference.png" alt="" aria-hidden="true">
-
         <div class="construction-tape one">
           <span>NOT PURCHASED YET • NOT PURCHASED YET • NOT PURCHASED YET • NOT PURCHASED YET • NOT PURCHASED YET • NOT PURCHASED YET •</span>
         </div>
@@ -1879,8 +1861,7 @@
             vous serez les premiers au courant : photos, fiche technique, réparations, budget,
             nom de baptême et niveau de confiance avant le départ.
           </p>
-          <a class="button primary" href="#blog" data-page-link="blog">Suivre les recherches</a>
-        </article>
+</article>
       </div>
     </section>
 
@@ -2071,7 +2052,7 @@
         title: "Recherche de la voiture parfaite — donc imparfaite",
         date: "2026-06-01",
         category: "Voiture",
-        image: "./assets/images/blog/penup-test.png",
+        image: "./assets/images/blog/gartic-article-voiture.png",
         excerpt: "On compare les petites voitures simples à réparer : Twingo, Panda, Saxo, 106, Micra... Le cahier des charges : pas cher, léger, fiable, et assez drôle pour traverser un continent.",
         content: [
           "La voiture n'est pas encore achetée, et c'est peut-être mieux pour notre tension artérielle.",
@@ -2083,7 +2064,7 @@
         title: "Première liste d'équipement",
         date: "2026-06-15",
         category: "Route",
-        image: "./assets/images/blog/penup-test.png",
+        image: "./assets/images/blog/gartic-article-route.png",
         excerpt: "Power station, outils, musique, pièces de rechange, couchage, navigation hors ligne : on prépare une liste réaliste pour éviter de transformer le coffre en brocante roulante.",
         content: [
           "Le coffre devra contenir à la fois l'outillage, les pièces critiques, un minimum de confort, de quoi se repérer, de quoi charger les appareils et probablement trois objets parfaitement inutiles mais émotionnellement indispensables.",
