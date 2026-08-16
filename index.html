@@ -811,6 +811,237 @@
     }
 
 
+
+    .car-construction {
+      position: relative;
+      min-height: calc(100vh - 180px);
+      border-radius: 34px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      padding: 72px 22px;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(142, 202, 230, 0.34), transparent 18rem),
+        radial-gradient(circle at 82% 75%, rgba(199, 92, 44, 0.24), transparent 20rem),
+        linear-gradient(135deg, rgba(255,250,240,0.94), rgba(246,223,189,0.82));
+      border: 1px solid rgba(31, 41, 51, 0.10);
+      box-shadow: var(--shadow);
+    }
+
+    .car-construction::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg, rgba(31, 41, 51, 0.05), transparent 45%),
+        repeating-linear-gradient(45deg, rgba(31,41,51,0.035), rgba(31,41,51,0.035) 1px, transparent 1px, transparent 24px);
+      pointer-events: none;
+    }
+
+    .construction-tape {
+      position: absolute;
+      left: -18%;
+      width: 136%;
+      height: 82px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        repeating-linear-gradient(45deg,
+          #ffffff 0 30px,
+          #fff6f6 30px 58px,
+          #ff253a 58px 71px,
+          #ffffff 71px 99px
+        );
+      border-top: 4px solid rgba(210, 31, 47, 0.95);
+      border-bottom: 4px solid rgba(210, 31, 47, 0.95);
+      box-shadow: 0 18px 44px rgba(31, 41, 51, 0.20);
+      z-index: 1;
+    }
+
+    .construction-tape span {
+      min-width: max-content;
+      display: block;
+      padding-left: 18px;
+      color: #d21f2f;
+      font-weight: 1000;
+      font-size: clamp(0.95rem, 2vw, 1.32rem);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 0 rgba(255,255,255,0.70);
+      animation: tapeSlide 18s linear infinite;
+    }
+
+    .construction-tape.one {
+      top: 20%;
+      transform: rotate(-16deg);
+    }
+
+    .construction-tape.two {
+      bottom: 22%;
+      transform: rotate(15deg);
+    }
+
+    .construction-tape.three {
+      top: 48%;
+      transform: rotate(-4deg);
+      opacity: 0.82;
+    }
+
+    @keyframes tapeSlide {
+      from { transform: translateX(0); }
+      to { transform: translateX(-420px); }
+    }
+
+    .car-construction-card {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      padding: clamp(28px, 5vw, 52px);
+      border-radius: 32px;
+      text-align: center;
+      background: rgba(255, 250, 240, 0.94);
+      border: 1px solid rgba(31, 41, 51, 0.10);
+      box-shadow: 0 28px 72px rgba(31, 41, 51, 0.24);
+      backdrop-filter: blur(14px);
+    }
+
+    .car-construction-card h2 {
+      font-size: clamp(2.3rem, 6vw, 5rem);
+      line-height: 0.92;
+      letter-spacing: -0.08em;
+      margin: 8px 0 18px;
+    }
+
+    .car-construction-card p {
+      color: #465463;
+      font-size: 1.08rem;
+      font-weight: 650;
+      margin-bottom: 22px;
+    }
+
+    .car-construction-status {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: rgba(210, 31, 47, 0.12);
+      color: #b51d36;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+    }
+
+    .car-tape-reference {
+      position: absolute;
+      width: min(420px, 38vw);
+      opacity: 0.12;
+      filter: saturate(1.2);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .car-tape-reference.one {
+      left: -60px;
+      bottom: -40px;
+      transform: rotate(-13deg);
+    }
+
+    .car-tape-reference.two {
+      right: -70px;
+      top: -35px;
+      transform: rotate(18deg);
+    }
+
+    .blog-card-list {
+      gap: 14px;
+    }
+
+    .blog-post-button {
+      width: 100%;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      text-align: left;
+      cursor: pointer;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .blog-post-button:hover {
+      transform: translateY(-3px);
+      filter: drop-shadow(0 14px 22px rgba(31, 41, 51, 0.12));
+    }
+
+    .blog-post-button.selected .post-content {
+      outline: 3px solid rgba(199, 92, 44, 0.28);
+    }
+
+    .blog-detail {
+      margin: 0 0 20px;
+      padding: clamp(22px, 4vw, 34px);
+      border-radius: 28px;
+      background: rgba(255, 250, 240, 0.92);
+      border: 1px solid rgba(31, 41, 51, 0.08);
+      box-shadow: var(--shadow);
+      animation: fadeUp 0.3s ease both;
+    }
+
+    .blog-detail[hidden] {
+      display: none;
+    }
+
+    .blog-detail-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .blog-detail h3 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 0.95;
+      letter-spacing: -0.07em;
+      margin: 10px 0 12px;
+    }
+
+    .blog-detail-date {
+      color: var(--muted);
+      font-weight: 850;
+    }
+
+    .blog-detail-close {
+      flex: 0 0 auto;
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: var(--ink);
+      color: var(--paper);
+      font-weight: 950;
+      cursor: pointer;
+    }
+
+    .blog-article-image {
+      width: 100%;
+      max-height: 420px;
+      object-fit: contain;
+      border-radius: 24px;
+      background: rgba(31, 41, 51, 0.04);
+      border: 1px solid rgba(31, 41, 51, 0.08);
+      box-shadow: 0 16px 34px rgba(31, 41, 51, 0.12);
+      margin: 18px 0 20px;
+    }
+
+    .blog-detail-body {
+      display: grid;
+      gap: 14px;
+      color: #3d4a57;
+      font-size: 1.05rem;
+      font-weight: 560;
+    }
+
     .feature-list {
       display: grid;
       gap: 12px;
@@ -1257,6 +1488,14 @@
         grid-template-columns: 1fr;
       }
 
+      .blog-detail-header {
+        display: block;
+      }
+
+      .blog-detail-close {
+        margin-top: 12px;
+      }
+
       .section-header {
         display: block;
       }
@@ -1618,72 +1857,29 @@
     </section>
 
     <section class="page" id="car" data-page="car">
-      <div class="section-header">
-        <h2>La voiture</h2>
-        <p>
-          Pour l'instant, la voiture n'est pas encore choisie. Cette page servira à suivre
-          la recherche, l'achat, les réparations, les tests et les petites décisions mécaniques
-          qui peuvent sauver un voyage... ou au moins retarder la panne de trois kilomètres.
-        </p>
-      </div>
+      <div class="car-construction">
+        <img class="car-tape-reference one" src="./assets/images/car/tape-reference.png" alt="" aria-hidden="true">
+        <img class="car-tape-reference two" src="./assets/images/car/tape-reference.png" alt="" aria-hidden="true">
 
-      <div class="grid two">
-        <article class="card">
-          <h3>Le cahier des charges</h3>
+        <div class="construction-tape one">
+          <span>NOT PURCHASED YET • NOT PURCHASED YET • NOT PURCHASED YET • NOT PURCHASED YET • NOT PURCHASED YET • NOT PURCHASED YET •</span>
+        </div>
+        <div class="construction-tape two">
+          <span>NOT PURCHASED YET • NOT PURCHASED YET • NOT PURCHASED YET • NOT PURCHASED YET • NOT PURCHASED YET • NOT PURCHASED YET •</span>
+        </div>
+        <div class="construction-tape three">
+          <span>NOT PURCHASED YET • NOT PURCHASED YET • NOT PURCHASED YET • NOT PURCHASED YET • NOT PURCHASED YET • NOT PURCHASED YET •</span>
+        </div>
+
+        <article class="car-construction-card">
+          <span class="car-construction-status">Zone mécanique non sécurisée</span>
+          <h2>Page en cours de construction</h2>
           <p>
-            On cherche une voiture simple, légère, peu chère, facile à réparer, avec des pièces
-            disponibles et assez de personnalité pour mériter son propre surnom.
+            La voiture n'est pas encore achetée. Quand on aura trouvé la monture officielle,
+            vous serez les premiers au courant : photos, fiche technique, réparations, budget,
+            nom de baptême et niveau de confiance avant le départ.
           </p>
-          <div class="feature-list">
-            <div class="feature-item">
-              <span class="icon-bubble">🔧</span>
-              <div><strong>Réparable simplement</strong><p>Mécanique accessible, peu d'électronique, pièces courantes.</p></div>
-            </div>
-            <div class="feature-item">
-              <span class="icon-bubble">⛽</span>
-              <div><strong>Consommation raisonnable</strong><p>Petite cylindrée, poids contenu, budget carburant moins violent.</p></div>
-            </div>
-            <div class="feature-item">
-              <span class="icon-bubble">🧳</span>
-              <div><strong>Volume exploitable</strong><p>Assez de place pour l'outillage, le couchage léger, les pièces et la nourriture.</p></div>
-            </div>
-          </div>
-        </article>
-
-        <article class="card">
-          <h3>Fiche provisoire</h3>
-          <p>À mettre à jour dès que la voiture sera achetée.</p>
-          <div class="spec-grid">
-            <div class="spec"><span>Modèle visé</span><strong>Twingo / Panda / Saxo / 106</strong></div>
-            <div class="spec"><span>Budget achat</span><strong>≈ 800–1 500 €</strong></div>
-            <div class="spec"><span>État recherché</span><strong>Simple mais saine</strong></div>
-            <div class="spec"><span>Priorité</span><strong>Fiabilité & pièces</strong></div>
-          </div>
-          <div class="tag-list">
-            <span class="tag">À acheter</span>
-            <span class="tag">À nommer</span>
-            <span class="tag">À fiabiliser</span>
-          </div>
-        </article>
-      </div>
-
-      <div class="section-header">
-        <h2>Checklist préparation</h2>
-        <p>Une base simple à enrichir au fur et à mesure des essais.</p>
-      </div>
-
-      <div class="grid three">
-        <article class="card">
-          <h3>Priorité 1 — fiabilité</h3>
-          <p>Vidanges, courroie si nécessaire, freins, pneus, batterie, refroidissement, durites, roulements.</p>
-        </article>
-        <article class="card">
-          <h3>Priorité 2 — autonomie</h3>
-          <p>Outils, roue de secours, jerrican, compresseur, kit crevaison, pièces critiques et éclairage.</p>
-        </article>
-        <article class="card">
-          <h3>Priorité 3 — confort</h3>
-          <p>Musique, charge téléphone, rangement, ventilation, couchage léger et organisation du coffre.</p>
+          <a class="button primary" href="#blog" data-page-link="blog">Suivre les recherches</a>
         </article>
       </div>
     </section>
@@ -1837,7 +2033,8 @@
         </select>
       </div>
 
-      <div class="grid" id="blogList"></div>
+      <article class="blog-detail" id="blogDetail" hidden></article>
+      <div class="grid blog-card-list" id="blogList"></div>
       <div class="empty-state" id="emptyState">Aucun article trouvé. Même la voiture n'a pas calé aussi fort.</div>
     </section>
   </main>
@@ -1862,19 +2059,37 @@
         title: "Le site est lancé",
         date: "2026-05-13",
         category: "Préparation",
-        excerpt: "Première version du site : structure, pages principales, espace dons et blog. Prochaine étape : choisir le nom officiel de l'équipe et ajouter les photos."
+        image: "./assets/images/blog/penup-test.png",
+        excerpt: "Première version du site : structure, pages principales, espace dons et blog. Prochaine étape : choisir le nom officiel de l'équipe et ajouter les photos.",
+        content: [
+          "On pose la première pierre du projet : un site simple, gratuit et hébergé sur GitHub Pages pour centraliser l'aventure.",
+          "L'objectif est d'avoir une vitrine propre pour expliquer le rallye, présenter l'équipe, suivre les avancées et rassurer les futurs soutiens.",
+          "Pour l'instant, beaucoup de contenus sont encore des placeholders. Mais c'est justement le but : construire une base solide, puis remplacer petit à petit par nos vraies photos, nos vrais choix et nos vraies galères."
+        ]
       },
       {
         title: "Recherche de la voiture parfaite — donc imparfaite",
         date: "2026-06-01",
         category: "Voiture",
-        excerpt: "On compare les petites voitures simples à réparer : Twingo, Panda, Saxo, 106, Micra... Le cahier des charges : pas cher, léger, fiable, et assez drôle pour traverser un continent."
+        image: "./assets/images/blog/penup-test.png",
+        excerpt: "On compare les petites voitures simples à réparer : Twingo, Panda, Saxo, 106, Micra... Le cahier des charges : pas cher, léger, fiable, et assez drôle pour traverser un continent.",
+        content: [
+          "La voiture n'est pas encore achetée, et c'est peut-être mieux pour notre tension artérielle.",
+          "On cherche une petite caisse simple, pas trop chère, facile à réparer et avec des pièces trouvables. L'idée n'est pas d'acheter la voiture parfaite, mais celle qui aura le meilleur rapport entre charme, survie mécanique et absurdité.",
+          "Dès qu'une candidate sérieuse apparaît, elle passera sur la page voiture avec photos, défauts assumés, budget et premières réparations prévues."
+        ]
       },
       {
         title: "Première liste d'équipement",
         date: "2026-06-15",
         category: "Route",
-        excerpt: "Power station, outils, musique, pièces de rechange, couchage, navigation hors ligne : on prépare une liste réaliste pour éviter de transformer le coffre en brocante roulante."
+        image: "./assets/images/blog/penup-test.png",
+        excerpt: "Power station, outils, musique, pièces de rechange, couchage, navigation hors ligne : on prépare une liste réaliste pour éviter de transformer le coffre en brocante roulante.",
+        content: [
+          "Le coffre devra contenir à la fois l'outillage, les pièces critiques, un minimum de confort, de quoi se repérer, de quoi charger les appareils et probablement trois objets parfaitement inutiles mais émotionnellement indispensables.",
+          "La difficulté sera de rester léger : chaque objet doit mériter sa place, surtout dans une petite voiture qui n'a pas demandé à devenir camping-car.",
+          "La liste sera publiée progressivement, avec ce qui est vraiment utile, ce qui est discutable, et ce qui sera embarqué uniquement parce que quelqu'un dans l'équipe aura dit : fais confiance."
+        ]
       }
     ];
 
@@ -2031,19 +2246,23 @@
     function renderBlog() {
       const list = document.getElementById("blogList");
       const emptyState = document.getElementById("emptyState");
+      const detail = document.getElementById("blogDetail");
       const search = document.getElementById("blogSearch").value.toLowerCase().trim();
       const filter = document.getElementById("blogFilter").value;
 
-      const filtered = blogPosts.filter(post => {
-        const matchesSearch = [post.title, post.category, post.excerpt].join(" ").toLowerCase().includes(search);
+      const indexedPosts = blogPosts.map((post, index) => ({ ...post, index }));
+      const filtered = indexedPosts.filter(post => {
+        const matchesSearch = [post.title, post.category, post.excerpt, ...(post.content || [])].join(" ").toLowerCase().includes(search);
         const matchesFilter = filter === "all" || post.category === filter;
         return matchesSearch && matchesFilter;
       });
 
       list.innerHTML = filtered.map(post => {
         const formatted = formatPostDate(post.date);
+        const selectedClass = post.index === activeBlogPost ? "selected" : "";
+
         return `
-          <article class="blog-post">
+          <button class="blog-post blog-post-button ${selectedClass}" type="button" data-post-index="${post.index}" aria-label="Lire l'article ${post.title}">
             <div class="post-date-box">
               <div>
                 <strong>${formatted.day}</strong>
@@ -2055,11 +2274,62 @@
               <div class="post-meta"><span class="tag">${post.category}</span></div>
               <p>${post.excerpt}</p>
             </div>
-          </article>
+          </button>
         `;
       }).join("");
 
+      list.querySelectorAll("[data-post-index]").forEach(button => {
+        button.addEventListener("click", () => openBlogPost(Number(button.dataset.postIndex)));
+      });
+
+      if (activeBlogPost !== null && !filtered.some(post => post.index === activeBlogPost)) {
+        activeBlogPost = null;
+        detail.hidden = true;
+        detail.innerHTML = "";
+      }
+
       emptyState.style.display = filtered.length ? "none" : "block";
+    }
+
+    let activeBlogPost = null;
+
+    function openBlogPost(index) {
+      const detail = document.getElementById("blogDetail");
+      const post = blogPosts[index];
+      if (!post) return;
+
+      activeBlogPost = index;
+      renderBlog();
+
+      const formatted = formatPostDate(post.date);
+      const imageBlock = post.image
+        ? `<img class="blog-article-image" src="${post.image}" alt="Image de l'article ${post.title}">`
+        : "";
+
+      detail.hidden = false;
+      detail.innerHTML = `
+        <div class="blog-detail-header">
+          <div>
+            <span class="eyebrow">${post.category}</span>
+            <h3>${post.title}</h3>
+            <p class="blog-detail-date">${formatted.day} ${formatted.month} ${formatted.year}</p>
+          </div>
+          <button class="blog-detail-close" type="button" data-close-blog>Fermer</button>
+        </div>
+        ${imageBlock}
+        <div class="blog-detail-body">
+          ${(post.content || []).map(paragraph => `<p>${paragraph}</p>`).join("")}
+        </div>
+      `;
+
+      detail.querySelector("[data-close-blog]").addEventListener("click", () => {
+        activeBlogPost = null;
+        detail.hidden = true;
+        detail.innerHTML = "";
+        renderBlog();
+      });
+
+      detail.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
     function renderRoute(activeIndex = 0) {
