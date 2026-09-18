@@ -2075,8 +2075,9 @@
       <div class="section-header">
         <h2>Carnet de bord</h2>
         <p>
-          Ici, vous pourrez publier les avancées : choix de la voiture, réparations,
-          sponsors, préparation du matériel, galères administratives et tests sur route.
+          Le projet raconté depuis le début : les bonnes idées, les tableaux Excel,
+          les décisions prises beaucoup trop tôt et celles qu'on repousse parce que
+          « bon, c'est dans plus d'un an, on a le temps ».
         </p>
       </div>
 
@@ -2084,10 +2085,10 @@
         <input class="search-input" id="blogSearch" type="search" placeholder="Rechercher un article..." aria-label="Rechercher un article" />
         <select class="select-input" id="blogFilter" aria-label="Filtrer par catégorie">
           <option value="all">Toutes les catégories</option>
+          <option value="Origines">Origines</option>
           <option value="Préparation">Préparation</option>
-          <option value="Voiture">Voiture</option>
-          <option value="Sponsors">Sponsors</option>
-          <option value="Route">Route</option>
+          <option value="Site">Site</option>
+          <option value="Identité">Identité</option>
         </select>
       </div>
 
@@ -2114,39 +2115,67 @@
 
     const blogPosts = [
       {
-        title: "Le site est lancé",
-        date: "2026-05-13",
+        title: "13 janvier 2026 : « ça a l'air drôle, tu veux le faire ? »",
+        date: "2026-01-13",
+        dateLabel: "13 janvier 2026",
+        category: "Origines",
+        image: "",
+        excerpt: "Un lien envoyé à Noah, une question posée presque comme une blague, un « oui » beaucoup trop rapide… et quelques heures plus tard, le projet était déjà étonnamment sérieux.",
+        content: [
+          "Tout a commencé le 13 janvier 2026 par un message parfaitement raisonnable : j'ai envoyé à Noah le lien du Mongol Rally avec, en gros, « ça a l'air drôle, tu veux le faire ? ».",
+          "Il a répondu oui. Le problème, c'est qu'on était tous les deux sérieux.",
+          "À ce stade, il n'y avait évidemment ni voiture, ni itinéraire, ni budget, ni la moindre idée de la quantité de paperasse que ce genre de projet pouvait impliquer. Il y avait juste un défi complètement disproportionné par rapport au niveau de préparation disponible, ce qui était déjà une excellente raison de commencer.",
+          "Yoann nous a rejoints très rapidement. La logique était simple : plus on est de fous, moins on a de chances de se perdre. Ce raisonnement n'a jamais été vérifié scientifiquement, mais il constitue encore aujourd'hui une partie non négligeable de notre stratégie de navigation.",
+          "En quelques jours, ce qui ressemblait à une idée lancée pour rire était devenu « notre projet pour 2027 ». Pas encore quelque chose qu'on préparait sérieusement au quotidien, mais suffisamment réel pour qu'on commence à en parler comme d'un truc qu'on allait vraiment faire.",
+          "Et c'est probablement ça le plus inquiétant dans cette histoire : personne n'a, à aucun moment, proposé d'abandonner l'idée."
+        ]
+      },
+      {
+        title: "Printemps 2026 : beaucoup de questions, un très grand Excel",
+        date: "2026-03-20",
+        dateLabel: "Printemps 2026",
         category: "Préparation",
-        image: "./assets/images/blog/penup-test.png",
-        excerpt: "Première version du site : structure, pages principales, espace dons et blog. Prochaine étape : choisir le nom officiel de l'équipe et ajouter les photos.",
+        image: "",
+        excerpt: "Voiture française, route, équipement, papiers, budget, sponsors… On a commencé à réfléchir à tout. Puis on s'est rappelé que le départ était encore très loin.",
         content: [
-          "On pose la première pierre du projet : un site simple, gratuit et hébergé sur GitHub Pages pour centraliser l'aventure.",
-          "L'objectif est d'avoir une vitrine propre pour expliquer le rallye, présenter l'équipe, suivre les avancées et rassurer les futurs soutiens.",
-          "Pour l'instant, beaucoup de contenus sont encore des placeholders. Mais c'est justement le but : construire une base solide, puis remplacer petit à petit par nos vraies photos, nos vrais choix et nos vraies galères."
+          "Une fois l'idée officiellement adoptée, on a commencé à réfléchir à tout ce qu'il faudrait résoudre avant le départ. Pas de manière particulièrement structurée, évidemment. Plutôt sous la forme d'une succession de « ah oui, il faudra penser à ça aussi ».",
+          "La première grande question, c'était la voiture. On voulait quelque chose de pas cher, drôle, relativement simple à réparer et, si possible, avec un petit côté français. Une voiture capable de représenter dignement le pays tout en donnant l'impression qu'elle n'aurait jamais dû quitter le périphérique.",
+          "Comme aucun de nous n'avait vraiment un kopeck à mettre immédiatement dans une voiture — ni forcément l'endroit où la stocker pendant plus d'un an — la recherche s'est transformée en ce que je fais de mieux : un immense tableau Excel. Modèles potentiels, avantages, défauts, prix, disponibilité, idées plus ou moins intelligentes… La future voiture n'existait pas encore, mais elle avait déjà des colonnes.",
+          "On a fait la même chose avec le reste : premières idées de trajet, matériel à embarquer, outils, pièces de rechange, couchage, navigation, visas, assurances, frontières, papiers du véhicule et estimation très approximative du budget. On a également commencé à réfléchir à ce qu'il faudrait présenter à de potentiels sponsors et à la manière de rendre le projet suffisamment sérieux pour convaincre des gens de nous aider à financer une idée qui, vue de l'extérieur, reste objectivement assez discutable.",
+          "Après plusieurs discussions, la conclusion a été d'une maturité exemplaire : le rallye est dans plus d'un an, on a largement le temps.",
+          "Beaucoup de sujets ont donc été volontairement laissés en suspens. Mais le projet avait désormais quelque chose d'important : une première structure, une liste beaucoup trop longue de choses à faire, et un fichier Excel qui allait probablement survivre à la voiture."
         ]
       },
       {
-        title: "Recherche de la voiture parfaite — donc imparfaite",
-        date: "2026-06-01",
-        category: "Voiture",
-        image: "./assets/images/blog/gartic-article-voiture.png",
-        excerpt: "On compare les petites voitures simples à réparer : Twingo, Panda, Saxo, 106, Micra... Le cahier des charges : pas cher, léger, fiable, et assez drôle pour traverser un continent.",
+        title: "14 mai 2026 : créer un site sans savoir faire un site",
+        date: "2026-05-14",
+        dateLabel: "14 mai 2026",
+        category: "Site",
+        image: "",
+        excerpt: "Mes exams étaient terminés, j'avais un peu trop de temps libre et une très mauvaise connaissance du HTML. Le contexte idéal pour ouvrir un repo GitHub.",
         content: [
-          "La voiture n'est pas encore achetée, et c'est peut-être mieux pour notre tension artérielle.",
-          "On cherche une petite caisse simple, pas trop chère, facile à réparer et avec des pièces trouvables. L'idée n'est pas d'acheter la voiture parfaite, mais celle qui aura le meilleur rapport entre charme, survie mécanique et absurdité.",
-          "Dès qu'une candidate sérieuse apparaît, elle passera sur la page voiture avec photos, défauts assumés, budget et premières réparations prévues."
+          "Le 14 mai, je venais de terminer mes finals exams. Ce qui aurait pu être l'occasion de dormir, de sortir ou simplement de ne rien faire s'est transformé en : « tiens, je vais faire un site pour le Mongol Rally ».",
+          "J'ai donc ouvert un repo GitHub, créé un index.html et me suis souvenu presque immédiatement d'un léger détail : je ne connaissais rien au HTML. Ni vraiment au CSS. Ni au JavaScript. Un excellent départ.",
+          "Heureusement, nous vivons à une époque formidable où il est possible de compenser une absence totale de compétences web par beaucoup de prompts, énormément d'essais et une quantité de tokens dépensée qu'il vaut probablement mieux ne jamais convertir en bilan carbone émotionnel.",
+          "La première version était simple : présenter l'équipe, expliquer le Mongol Rally, parler de la future voiture, montrer une idée de route, ajouter une page pour les dons et garder un espace pour raconter l'avancement du projet.",
+          "À partir de là, le site a commencé à évoluer presque en continu. Une page d'accueil, une carte, des portraits façon écran de sélection de personnage, une route interactive, des bandes « NOT PURCHASED YET » pour une voiture qu'on n'avait toujours pas achetée… À chaque fois, l'idée était la même : partir d'un truc fonctionnel, puis essayer de lui donner progressivement une vraie personnalité.",
+          "Donc oui : merci aux LLM. Sans eux, ce site serait probablement un fichier texte avec trois liens bleus et une photo beaucoup trop grande. Avec eux, il est devenu un vrai terrain de jeu pour le projet — et accessoirement la preuve qu'avec suffisamment d'obstination, on peut produire du HTML sans vraiment savoir produire du HTML."
         ]
       },
       {
-        title: "Première liste d'équipement",
-        date: "2026-06-15",
-        category: "Route",
-        image: "./assets/images/blog/gartic-article-route.png",
-        excerpt: "Power station, outils, musique, pièces de rechange, couchage, navigation hors ligne : on prépare une liste réaliste pour éviter de transformer le coffre en brocante roulante.",
+        title: "Été 2026 : il nous fallait quand même une identité",
+        date: "2026-07-15",
+        dateLabel: "Été 2026",
+        category: "Identité",
+        image: "",
+        excerpt: "Un projet sans nom, sans logo et sans identité graphique, c'est pratique pour rester discret. Beaucoup moins pour présenter le rallye à qui que ce soit.",
         content: [
-          "Le coffre devra contenir à la fois l'outillage, les pièces critiques, un minimum de confort, de quoi se repérer, de quoi charger les appareils et probablement trois objets parfaitement inutiles mais émotionnellement indispensables.",
-          "La difficulté sera de rester léger : chaque objet doit mériter sa place, surtout dans une petite voiture qui n'a pas demandé à devenir camping-car.",
-          "La liste sera publiée progressivement, avec ce qui est vraiment utile, ce qui est discutable, et ce qui sera embarqué uniquement parce que quelqu'un dans l'équipe aura dit : fais confiance."
+          "Pendant l'été 2026, on a commencé à travailler davantage sur l'identité de l'équipe. Jusqu'ici, le projet existait surtout dans nos conversations, quelques documents, un site en construction et beaucoup trop d'idées stockées quelque part entre Excel et nos messages.",
+          "Il nous fallait donc quelque chose de plus reconnaissable : un logo, un ton, un nom d'équipe et une manière cohérente de présenter le projet.",
+          "Le logo est parti d'un détail assez représentatif de notre situation : ces dernières années, on a réussi à disperser l'équipe entre la France, la Suisse et le Canada. On a donc mélangé les symboles de ces trois pays — feuille d'érable, croix suisse et fleur de lys — dans une identité commune. Le résultat est un peu hybride, légèrement excessif et, pour cette raison, plutôt fidèle à l'équipe.",
+          "Le nom, lui, s'est avéré beaucoup plus compliqué. Il fallait quelque chose de court, mémorable, prononçable, suffisamment absurde pour nous ressembler, mais pas au point de devoir présenter des excuses à chaque sponsor potentiel. Plusieurs acronymes, jeux de mots et concepts douteux ont donc été produits. Beaucoup auraient probablement mieux fonctionné comme slogans que comme nom officiel.",
+          "En parallèle, le ton du site s'est précisé. On voulait pouvoir parler sérieusement du projet sans prétendre que nous sommes trois aventuriers professionnels préparant une expédition militaire. L'idée est plutôt d'assumer ce qu'on est : trois potes qui essaient de préparer correctement une aventure volontairement déraisonnable.",
+          "À ce stade, l'identité continue encore d'évoluer. Mais au moins, si la voiture tombe en panne au milieu de nulle part, elle pourra désormais le faire avec un joli logo."
         ]
       }
     ];
@@ -2301,6 +2330,22 @@
       };
     }
 
+    function formatPostLabel(post) {
+      if (post.dateLabel) {
+        const match = post.dateLabel.match(/^(\d{1,2})\s+(.+)\s+(\d{4})$/);
+        if (match) {
+          return { day: match[1].padStart(2, "0"), month: match[2], year: match[3] };
+        }
+        const yearMatch = post.dateLabel.match(/\d{4}$/);
+        return {
+          day: "•",
+          month: post.dateLabel.replace(/\s+\d{4}$/, ""),
+          year: yearMatch ? yearMatch[0] : ""
+        };
+      }
+      return formatPostDate(post.date);
+    }
+
     function renderBlog() {
       const list = document.getElementById("blogList");
       const emptyState = document.getElementById("emptyState");
@@ -2308,15 +2353,17 @@
       const search = document.getElementById("blogSearch").value.toLowerCase().trim();
       const filter = document.getElementById("blogFilter").value;
 
-      const indexedPosts = blogPosts.map((post, index) => ({ ...post, index }));
+      const indexedPosts = blogPosts
+        .map((post, index) => ({ ...post, index }))
+        .sort((a, b) => new Date(b.date) - new Date(a.date));
       const filtered = indexedPosts.filter(post => {
-        const matchesSearch = [post.title, post.category, post.excerpt, ...(post.content || [])].join(" ").toLowerCase().includes(search);
+        const matchesSearch = [post.title, post.category, post.dateLabel || "", post.excerpt, ...(post.content || [])].join(" ").toLowerCase().includes(search);
         const matchesFilter = filter === "all" || post.category === filter;
         return matchesSearch && matchesFilter;
       });
 
       list.innerHTML = filtered.map(post => {
-        const formatted = formatPostDate(post.date);
+        const formatted = formatPostLabel(post);
         const selectedClass = post.index === activeBlogPost ? "selected" : "";
 
         return `
@@ -2359,7 +2406,7 @@
       activeBlogPost = index;
       renderBlog();
 
-      const formatted = formatPostDate(post.date);
+      const formatted = formatPostLabel(post);
       const imageBlock = post.image
         ? `<img class="blog-article-image" src="${post.image}" alt="Image de l'article ${post.title}">`
         : "";
@@ -2370,7 +2417,7 @@
           <div>
             <span class="eyebrow">${post.category}</span>
             <h3>${post.title}</h3>
-            <p class="blog-detail-date">${formatted.day} ${formatted.month} ${formatted.year}</p>
+            <p class="blog-detail-date">${post.dateLabel || `${formatted.day} ${formatted.month} ${formatted.year}`}</p>
           </div>
           <button class="blog-detail-close" type="button" data-close-blog>Fermer</button>
         </div>
